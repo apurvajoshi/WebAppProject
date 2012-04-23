@@ -1,0 +1,50 @@
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+         version="2.4">
+
+    <display-name>MVC ToDoList</display-name>
+    <description>
+      MVC ToDoList
+    </description>
+
+    <servlet>
+        <servlet-name>  controller-servlet       </servlet-name>
+        <servlet-class>
+        	edu.cmu.cs.webapp.whatsuptonight.controller.Controller
+        </servlet-class>
+        <init-param>
+          <param-name>    jdbcDriverName          </param-name> 
+	      <param-value>   com.mysql.jdbc.Driver   </param-value>
+        </init-param>
+        <init-param>
+          <param-name>    jdbcURL                 </param-name> 
+	      <param-value>   jdbc:mysql:///whatsuptonight    </param-value>
+        </init-param>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>   image-servlet            </servlet-name>
+        <servlet-class>  edu.cmu.cs.webapp.whatsuptongiht.view.ImageServlet        </servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>  controller-servlet        </servlet-name>
+        <url-pattern>   *.do                     </url-pattern>
+    </servlet-mapping>
+	
+	<servlet-mapping>
+        <servlet-name>   image-servlet            </servlet-name>
+        <url-pattern>    /image                   </url-pattern>
+    </servlet-mapping>
+
+    <!-- <servlet-mapping>
+        <servlet-name>  controller-servlet        </servlet-name>
+        <url-pattern>   /login                    </url-pattern>
+    </servlet-mapping>  -->
+
+    <welcome-file-list>
+        <welcome-file>   welcome.do   </welcome-file>
+    </welcome-file-list>
+
+</web-app>

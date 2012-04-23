@@ -1,0 +1,72 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*   stylesheet.css                                                      
+     	CSS of the The Hangout website.
+     
+     Author      : Sunil Kumar Devalokam Murali
+     Andrew Id   : sdevalok
+     Course#     : 15-637
+     Date        : 1/30/2012
+*/
+
+.banner 
+{
+	background-color: #3B5998;	
+	height: 50px;
+	font-family: Calibri;
+	font-size: 24px;
+	font-weight: bold;		
+}
+
+.discover
+{
+	font-family: Calibri;
+	font-size: 20px;
+	font-weight:bold;
+	color: #3B5998;
+	font-style:italic;
+}
+
+.home_eventheading
+{
+	color: #3B5998;
+	font-family: Calibri;
+	font-size: 16px;
+	font-style:italic;
+	font-weight:bold;
+}
+
+.home_eventdate
+{
+	color: #000;
+	font-family: Calibri;
+	font-size: 16px;
+	font-style:italic;
+	font-weight:bold;
+}
+
+.home_eventwhen
+{
+	color: #000;
+	font-family: Calibri;
+	font-size: 14px;
+}
+
+.register_label
+{
+	color: #000;
+	font-family: Calibri;
+	font-size: 16px;
+}
+
+.eventdeatils_normal
+{
+	color: #000;
+	font-family: Calibri;
+	font-size: 16px;
+	font-weight:normal;
+}
+
+
+
