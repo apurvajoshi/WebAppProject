@@ -9,10 +9,9 @@ import org.genericdao.DAOException;
 public class Model {
 	
 	private UserDAO userDAO;
-//	private AddFriendDAO addFriendDAO;
-//	private PhotoDAO photoDAO;
-//	private StoryDAO storyDAO;
-//	private CommentDAO commentDAO;
+	private EventDAO eventDAO;
+	private TicketDAO ticketDAO;
+	private UserEventCreationDAO ueDAO;
 
 	public Model(ServletConfig config) throws ServletException {
 		try {
@@ -21,11 +20,10 @@ public class Model {
 			
 			ConnectionPool pool = new ConnectionPool(jdbcDriver,jdbcURL);
 						
-			userDAO  = new UserDAO("users", pool);			
-//			addFriendDAO = new AddFriendDAO("sdevalok_friends", pool);			
-//			photoDAO = new PhotoDAO("sdevalok_photos", pool);			
-//			storyDAO = new StoryDAO("sdevalok_story", pool);			
-//			commentDAO = new CommentDAO("sdevalok_comments", pool);
+			userDAO  = new UserDAO("users", pool);
+			eventDAO = new EventDAO("events", pool);
+			ticketDAO = new TicketDAO("tickets", pool);
+			ueDAO = new UserEventCreationDAO("user_event_creation", pool);
 			
 		} catch (DAOException e) {
 			throw new ServletException(e);
@@ -33,8 +31,8 @@ public class Model {
 	}
 		
 	public UserDAO getUserDAO()  { return userDAO; }
-//	public AddFriendDAO getAddFriendDAO()  { return addFriendDAO; }
-//	public PhotoDAO getPhotoDAO() { return photoDAO;	}
-//	public StoryDAO getStoryDAO() { return storyDAO;	}
-//	public CommentDAO getCommentDAO() { return commentDAO;	}
+	public EventDAO getEventDAO()  { return eventDAO; }
+	public TicketDAO getTicketDAO()  { return ticketDAO; }
+	public UserEventCreationDAO getUserEventCreationDAO()  { return ueDAO; }
+	
 }

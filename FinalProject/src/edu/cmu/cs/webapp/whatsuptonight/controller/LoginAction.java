@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.mybeans.form.FormBeanException;
 import org.mybeans.form.FormBeanFactory;
 
-import edu.cmu.cs.weapp.whatsuptonight.databean.User;
+import edu.cmu.cs.webapp.whatsuptonight.databean.User;
 import edu.cmu.cs.webapp.whatsuptonight.formbean.LoginForm;
 import edu.cmu.cs.webapp.whatsuptonight.model.Model;
 import edu.cmu.cs.webapp.whatsuptonight.model.UserDAO;

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import edu.cmu.cs.weapp.whatsuptonight.databean.User;
+import edu.cmu.cs.webapp.whatsuptonight.databean.User;
 import edu.cmu.cs.webapp.whatsuptonight.model.Model;
 
 public class Controller extends HttpServlet {
@@ -21,6 +21,7 @@ public class Controller extends HttpServlet {
         
         Action.add(new RegisterAction(model));
         Action.add(new LoginAction(model));
+        Action.add(new CreateEventAction(model));
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -53,7 +54,11 @@ public class Controller extends HttpServlet {
         if (action.equals("login.do")) {
 			return Action.perform("login.do",request);
         }
-                
+
+        if (action.equals("createEvent.do")) {
+			return Action.perform("createEvent.do",request);
+        }
+        
         return null;
 		
     }

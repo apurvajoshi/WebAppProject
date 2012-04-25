@@ -13,7 +13,7 @@ import org.genericdao.GenericDAO;
 import org.genericdao.MatchArg;
 import org.genericdao.RollbackException;
 
-import edu.cmu.cs.weapp.whatsuptonight.databean.User;
+import edu.cmu.cs.webapp.whatsuptonight.databean.User;
 
 public class UserDAO extends GenericDAO<User> {
 	public UserDAO(String tableName, ConnectionPool connectionPool) throws DAOException {

@@ -12,7 +12,7 @@ import org.genericdao.RollbackException;
 import org.mybeans.form.FormBeanException;
 import org.mybeans.form.FormBeanFactory;
 
-import edu.cmu.cs.weapp.whatsuptonight.databean.User;
+import edu.cmu.cs.webapp.whatsuptonight.databean.User;
 import edu.cmu.cs.webapp.whatsuptonight.formbean.RegisterForm;
 import edu.cmu.cs.webapp.whatsuptonight.model.Model;
 import edu.cmu.cs.webapp.whatsuptonight.model.UserDAO;
