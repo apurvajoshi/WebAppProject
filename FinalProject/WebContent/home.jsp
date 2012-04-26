@@ -68,7 +68,11 @@ function MM_swapImage() { //v3.0
         <td width="14%">&nbsp;</td>
         <td width="72%"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td class="discover"><br/>Discover Events at Pittsburgh</td>
+            <td class="discover">
+            <br/>
+			<jsp:include page="error-list.jsp" />
+            
+            <br/>Discover Events at Pittsburgh</td>
           </tr>
           <tr>
             <td align="left"><br />

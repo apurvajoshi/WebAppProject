@@ -28,7 +28,6 @@
                     // insert the token into the form so it gets submitted to the server
                     form$.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
                     // and submit
-                    alert("Submitting form");
                     form$.get(0).submit();
                 }
             }

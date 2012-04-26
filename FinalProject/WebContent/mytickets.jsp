@@ -91,6 +91,9 @@ function MM_swapImage() { //v3.0
                 <tr>
                   <td>
                     <table width="550px" border="0" cellspacing="0" cellpadding="0">
+                    
+                    <c:forEach var="event" items="${ticketsList}">
+                    
                       <tr>
                         <td width="150" height="25px" class="home_eventheading"><u>Holi Celebration</u></td>
                         <td width="100" class="register_label">Wed, Apr 4</td>

@@ -72,7 +72,10 @@ function MM_swapImage() { //v3.0
           
           
           <tr>
-            <td class="discover"><br/>
+            <td class="discover">
+            <br/>
+            	<jsp:include page="error-list.jsp" />
+            <br/>
             ${event.title}</td>
           </tr>
           <tr>
@@ -87,34 +90,32 @@ function MM_swapImage() { //v3.0
                   </tr>
                   <tr>
                     <td>
-                    
+                    <form method="post" id="form1" action="getCardDetails.do">        
                     	<table width="400px" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td class="home_eventwhen">Ticket Type</td>
-    <td class="home_eventwhen">Price</td>
-    <td class="home_eventwhen">Quantity</td>
-    
-  </tr>
-  <tr>
-    <td class="eventdeatils_normal">${ticket.ticketName}</td>
-    <td class="eventdeatils_normal">${ticket.ticketPrice}</td>
-    <td><label for="quantity"></label>
-      <select name="quantity" id="quantity">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-      </select>
-      </td>
-    
-  </tr>
-  <tr>
-    <td align="right" colspan="3"><input name="orderbutton" type="button" value="Book Tickets" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-    </tr>
-</table>
-
+						  <tr>
+					    	<td class="home_eventwhen">Ticket Type</td>
+					    	<td class="home_eventwhen">Price</td>
+					    	<td class="home_eventwhen">Quantity</td>
+					  	  </tr>
+					  	  <tr>
+					    	<td class="eventdeatils_normal">${ticket.ticketName}</td>
+					    	<td class="eventdeatils_normal">${ticket.ticketPrice}</td>
+					    	<td><label for="quantity"></label>
+					      	<select name="quantity" id="quantity">
+					        <option value="1">1</option>
+					        <option value="2">2</option>
+					        <option value="3">3</option>
+					        <option value="4">4</option>
+					        <option value="5">5</option>
+					        <option value="6">6</option>
+					      	</select>
+					      	</td>
+ 						 </tr>
+					  	<tr>
+					    	<td align="right" colspan="3"><input name="orderbutton" type="submit" value="Book Tickets" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+						    </tr>
+						</table>
+					</form>
                     
                     </td>
                     
@@ -128,21 +129,17 @@ function MM_swapImage() { //v3.0
                 <td>
                 
                 	<table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td class="home_eventdate">Event Details</td>
-  </tr>
-  <tr>
-    <td class="eventdeatils_normal">
-    ${event.description} <br/><br/>
-When: ${event.startDate}<br/>
-Where: ${event.location} ${event.city}<br/>
-
-
-    
-    
-    </td>
-  </tr>
-</table>
+					  <tr>
+					    <td class="home_eventdate">Event Details</td>
+					  </tr>
+					  <tr>
+					    <td class="eventdeatils_normal">
+					    ${event.description} <br/><br/>
+					When: ${event.startDate}<br/>
+					Where: ${event.location} ${event.city}<br/>					    
+					    </td>
+					  </tr>
+					</table>
 
                 
                 </td>
