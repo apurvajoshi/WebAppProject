@@ -65,7 +65,7 @@ public class LoginAction extends Action {
 	
 	        	session.setAttribute("user",user);
 	        		        	
-	        	return "home.jsp";
+	        	return "home.do";
        		}
 	        return "index.jsp";
         } catch (FormBeanException e) {

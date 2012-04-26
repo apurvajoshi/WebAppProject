@@ -1,8 +1,10 @@
 package edu.cmu.cs.webapp.whatsuptonight.formbean;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import org.mybeans.form.FileProperty;
 import org.mybeans.form.FormBean;
 
 public class EventForm extends FormBean{
@@ -10,6 +12,7 @@ public class EventForm extends FormBean{
 	private String action;
 	private String title;
 	private String desc;
+	private FileProperty file = null;
 	private String location;
 	private String city;
 	private String startDate;
@@ -25,6 +28,9 @@ public class EventForm extends FormBean{
 	private String ticketQty;
 	private String ticketPrice;
 
+	public FileProperty getFile()           { return file;           }
+	public void setFile(FileProperty file)  { this.file   = file;     }
+	
 	public String getCategory() {
 		return category;
 	}
@@ -163,10 +169,31 @@ public class EventForm extends FormBean{
         if (startTime.matches(".*[<>\"].*")) errors.add("Start Time may not contain angle brackets or quotes");
         if (endDate.matches(".*[<>\"].*")) errors.add("End Date may not contain angle brackets or quotes");
         if (endTime.matches(".*[<>\"].*")) errors.add("End Time may not contain angle brackets or quotes");
+        if (timeZone.matches(".*[<>\"].*")) errors.add("Time Zone may not contain angle brackets or quotes");
         if (host.matches(".*[<>\"].*")) errors.add("Host may not contain angle brackets or quotes");
         if (ticketName.matches(".*[<>\"].*")) errors.add("Ticket Name may not contain angle brackets or quotes");
         if (ticketQty.matches(".*[<>\"].*")) errors.add("Ticket Quantity may not contain angle brackets or quotes");
         if (ticketPrice.matches(".*[<>\"].*")) errors.add("Ticket Price may not contain angle brackets or quotes");
+        
+        Date end = new Date(endDate);
+        Date start = new Date(startDate);
+        
+        if(end.before(start))
+        	errors.add("Event End Date should be after Event Start Date.");
+        	
+        
+        if (file == null || file.getFileName().length() == 0) {
+			errors.add("You must provide a file");
+			return errors;
+		}
+
+		if (file.getBytes().length == 0) {
+			errors.add("Zero length file");
+		}
+		
+		if (file.getBytes().length > 102400) {
+			errors.add("Image file size should be less than 100KB.");
+		}
         
         return errors;
     }

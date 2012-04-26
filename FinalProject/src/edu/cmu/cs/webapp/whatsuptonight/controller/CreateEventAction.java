@@ -3,6 +3,7 @@ package edu.cmu.cs.webapp.whatsuptonight.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,10 +11,12 @@ import javax.servlet.http.HttpSession;
 
 import org.genericdao.DuplicateKeyException;
 import org.genericdao.RollbackException;
+import org.mybeans.form.FileProperty;
 import org.mybeans.form.FormBeanException;
 import org.mybeans.form.FormBeanFactory;
 
 import edu.cmu.cs.webapp.whatsuptonight.databean.Event;
+import edu.cmu.cs.webapp.whatsuptonight.databean.Photo;
 import edu.cmu.cs.webapp.whatsuptonight.databean.Ticket;
 import edu.cmu.cs.webapp.whatsuptonight.databean.User;
 import edu.cmu.cs.webapp.whatsuptonight.databean.UserEventCreation;
@@ -21,6 +24,7 @@ import edu.cmu.cs.webapp.whatsuptonight.formbean.EventForm;
 import edu.cmu.cs.webapp.whatsuptonight.formbean.RegisterForm;
 import edu.cmu.cs.webapp.whatsuptonight.model.EventDAO;
 import edu.cmu.cs.webapp.whatsuptonight.model.Model;
+import edu.cmu.cs.webapp.whatsuptonight.model.PhotoDAO;
 import edu.cmu.cs.webapp.whatsuptonight.model.TicketDAO;
 import edu.cmu.cs.webapp.whatsuptonight.model.UserDAO;
 import edu.cmu.cs.webapp.whatsuptonight.model.UserEventCreationDAO;
@@ -32,11 +36,13 @@ public class CreateEventAction extends Action {
 	private EventDAO eventDAO;
 	private TicketDAO ticketDAO;
 	private UserEventCreationDAO ueDAO;
+	private PhotoDAO photoDAO;
 
 	public CreateEventAction(Model model) {
 		eventDAO = model.getEventDAO();
 		ticketDAO = model.getTicketDAO();
 		ueDAO = model.getUserEventCreationDAO();
+		photoDAO = model.getPhotoDAO();
 	}
 
 	public String getName() { return "createEvent.do"; }
@@ -71,9 +77,9 @@ public class CreateEventAction extends Action {
        			newEvent.setDescription(form.getDesc());
        			newEvent.setLocation(form.getLocation());
        			newEvent.setCity(form.getCity());
-       			newEvent.setStartDate(form.getStartDate());
+       			newEvent.setStartDate(new Date(form.getStartDate()));
        			newEvent.setStartTime(form.getStartTime());
-       			newEvent.setEndDate(form.getEndDate());
+       			newEvent.setEndDate(new Date(form.getEndDate()));
        			newEvent.setEndTime(form.getEndTime());
        			newEvent.setTimeZone(form.getTimeZone());
        			newEvent.setCategory(form.getCategory());
@@ -81,8 +87,8 @@ public class CreateEventAction extends Action {
        			newEvent.setOrganization(form.getHost());
        			String privacy = request.getParameter("privacy");
        			newEvent.setPrivacy(privacy);
-       				
-	       		
+       			newEvent.setInsertTime(new Date());
+       			       			       		
 	       		int eventId = -1;
 				try {
 					eventId = eventDAO.insertEventinDB(newEvent);
@@ -96,7 +102,12 @@ public class CreateEventAction extends Action {
 					errors.add("Error while creating the Event.");
 					return "event.jsp";
 				}
-					
+				
+				FileProperty fileProp = form.getFile();
+    			Photo photo = new Photo();  
+    			photo.setEventId(eventId);
+    			photo.setBytes(fileProp.getBytes());
+    			photoDAO.create(photo);
 	       		
 	       		Ticket newTicket = new Ticket();
        			newTicket.setTicketName(form.getTicketName());

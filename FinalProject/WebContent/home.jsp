@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -80,19 +81,21 @@ function MM_swapImage() { //v3.0
           <tr>
             <td><br/>
             	<table width="450px" border="0" cellspacing="0" cellpadding="0">
+            	
+            	<c:forEach var="event" items="${eventsList}">
                   <tr>
                     <td>
                     	<table width="450px" border="0" cellspacing="0" cellpadding="0">
                           <tr>
-                            <td width="350" height="25px" class="home_eventheading">Cocktails & Veils Akron Bridal Show</td>
-                            <td width="100" class="home_eventdate">Wed, Apr 4</td>
+                            <td width="350" height="25px" class="home_eventheading"><a href="userEventRegistration.do?eventId=${event.eventId}">${event.title}</a></td>
+                            <td width="100" class="home_eventdate">${event.startDate }</td>
                           </tr>
                           <tr>
-                            <td class="home_eventwhen" height="18px"><b>When:</b>	April 4, 2012 4:00 PM</td>
+                            <td class="home_eventwhen" height="18px"><b>When:</b>	${event.startDate}</td>
                             <td></td>
                           </tr>  
                           <tr>
-                            <td class="home_eventwhen"><b>Where:</b>	135 South Broadway Street, Akron, OH</td>
+                            <td class="home_eventwhen"><b>Where:</b>	${event.location}</td>
                             <td>&nbsp;</td>
                           </tr>
                           <tr>
@@ -101,50 +104,7 @@ function MM_swapImage() { //v3.0
                 		</table>
             		</td>
            		</tr>
-                
-                <tr>
-                    <td>
-                    	<table width="450px" border="0" cellspacing="0" cellpadding="0">
-                          <tr>
-                            <td width="350" class="home_eventheading" height="25px">Black Squirrel 5k Race</td>
-                            <td width="100" class="home_eventdate">Sat, Apr 14</td>
-                          </tr>
-                          <tr>
-                            <td class="home_eventwhen" height="18px">When:	April 14, 2012 8:00 AM</td>
-                            <td></td>
-                          </tr>  
-                          <tr>
-                            <td class="home_eventwhen">Where:	1550 Ted Boyd Drive, Kent, OH</td>
-                            <td>&nbsp;</td>
-                          </tr>
-                          <tr>
-                            <td colspan="2" class="home_eventwhen" height="30px"><hr/></td>
-                          </tr>                
-                		</table>
-            		</td>
-           		</tr>
-                
-                <tr>
-                    <td>
-                    	<table width="450px" border="0" cellspacing="0" cellpadding="0">
-                          <tr>
-                            <td width="350" class="home_eventheading" height="25px">On My Own Two Feet Marathon</td>
-                            <td width="100" class="home_eventdate">Sat, Apr 21</td>
-                          </tr>
-                          <tr>
-                            <td class="home_eventwhen" height="18px"><b>When:</b>	April 21, 2012 9:00 AM</td>
-                            <td></td>
-                          </tr>  
-                          <tr>
-                            <td class="home_eventwhen"><b>Where:</b>	Summit Street, Kent, OH</td>
-                            <td>&nbsp;</td>
-                          </tr>
-                          <tr>
-                            <td colspan="2" class="home_eventwhen" height="30px"><hr/></td>
-                          </tr>                
-                		</table>
-            		</td>
-           		</tr>
+           		</c:forEach>
                 
 	        </table>
           

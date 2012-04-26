@@ -1,5 +1,7 @@
 package edu.cmu.cs.webapp.whatsuptonight.databean;
 
+import java.util.Date;
+
 import org.genericdao.PrimaryKey;
 
 @PrimaryKey("eventId")
@@ -9,18 +11,20 @@ public class Event {
 	private String description;
 	private String location;
 	private String city;
-	private String startDate;
+	private Date startDate;
 	private String startTime;
-	private String endDate;
+	private Date endDate;
 	private String endTime;
 	private String privacy;
 	private String timeZone;
 	private String category;
 	private String organization;
+	private Date insertTime;
 	
 	public int getEventId() {
 		return eventId;
 	}
+	
 	public String getLocation() {
 		return location;
 	}
@@ -33,24 +37,38 @@ public class Event {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	public String getStartDate() {
-		return startDate;
-	}
-	public void setStartDate(String startDate) {
-		this.startDate = startDate;
-	}
+	
 	public String getStartTime() {
 		return startTime;
 	}
 	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
-	public String getEndDate() {
+	
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
 		return endDate;
 	}
-	public void setEndDate(String endDate) {
+
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
+
+	public Date getInsertTime() {
+		return insertTime;
+	}
+
+	public void setInsertTime(Date insertTime) {
+		this.insertTime = insertTime;
+	}
+
 	public String getEndTime() {
 		return endTime;
 	}

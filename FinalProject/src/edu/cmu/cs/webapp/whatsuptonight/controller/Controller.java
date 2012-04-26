@@ -22,6 +22,7 @@ public class Controller extends HttpServlet {
         Action.add(new RegisterAction(model));
         Action.add(new LoginAction(model));
         Action.add(new CreateEventAction(model));
+        Action.add(new HomeAction(model));
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -59,7 +60,7 @@ public class Controller extends HttpServlet {
 			return Action.perform("createEvent.do",request);
         }
         
-        return null;
+        return Action.perform(action, request);
 		
     }
     
