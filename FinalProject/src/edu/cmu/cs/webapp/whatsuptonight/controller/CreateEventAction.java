@@ -125,10 +125,10 @@ public class CreateEventAction extends Action {
 	       			
 	       			ueDAO.createAutoIncrement(createEvent);
 	       			
-	       			return "myevents.jsp";
+	       			return "showMyEvents.do";
 	       		}
 	       		
-	       		return "myevents.jsp";
+	       		return "showMyEvents.do";
        		} 
 	        
 	        return "event.jsp";

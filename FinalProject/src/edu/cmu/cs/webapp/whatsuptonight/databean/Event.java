@@ -22,8 +22,7 @@ public class Event {
 	
 	public int getEventId() {
 		return eventId;
-	}
-	
+	}	
 	public String getLocation() {
 		return location;
 	}

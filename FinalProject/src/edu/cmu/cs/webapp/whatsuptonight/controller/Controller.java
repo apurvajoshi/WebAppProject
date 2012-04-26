@@ -23,6 +23,10 @@ public class Controller extends HttpServlet {
         Action.add(new LoginAction(model));
         Action.add(new CreateEventAction(model));
         Action.add(new HomeAction(model));
+        Action.add(new ShowMyEventsAction(model));
+        Action.add(new DisplayEventAction(model));
+        Action.add(new UpdateEventAction(model));
+        Action.add(new ImageAction(model));
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

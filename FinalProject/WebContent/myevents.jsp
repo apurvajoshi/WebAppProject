@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -89,9 +90,10 @@ function MM_swapImage() { //v3.0
                 <tr>
                   <td>
                     <table width="450px" border="0" cellspacing="0" cellpadding="0">
+                    <c:forEach var="event" items="${eventsList}">
                       <tr>
-                        <td width="150" height="25px" class="home_eventheading"><u>Holi Celebration</u></td>
-                        <td width="100" class="register_label">Wed, Apr 4</td>
+                        <td width="150" height="25px" class="home_eventheading"><u><a href="displayEvent.do?eventId=${event.eventId}">${event.title}</a></u></td>
+                        <td width="100" class="register_label">${event.startDate}</td>
                         <td width="100" class="register_label">
                         	150/300
                         </td>
@@ -99,33 +101,7 @@ function MM_swapImage() { //v3.0
                       <tr>
                         <td colspan="3" class="home_eventwhen" height="30px"><hr/></td>
                       </tr>     
-                      
-                      
-                      <tr>
-                        <td width="150" height="25px" class="home_eventheading"><u>Diwali Celebration</u></td>
-                        <td width="100" class="register_label">Wed, Apr 10</td>
-                        <td width="100" class="register_label">
-                        	220/500
-                        </td>
-                        </tr>
-                      <tr>
-                        <td colspan="3" class="home_eventwhen" height="30px"><hr/></td>
-                      </tr>     
-                      
-                      
-                      <tr>
-                        <td width="150" height="25px" class="home_eventheading"><u>Happy Hour</u></td>
-                        <td width="100" class="register_label">Wed, Apr 14</td>
-                        <td width="100" class="register_label">
-                        	225/350
-                        </td>
-                        </tr>
-                      <tr>
-                        <td colspan="3" class="home_eventwhen" height="30px"><hr/></td>
-                      </tr>     
-                      
-                      
-                                 
+                      </c:forEach>     
                       </table>
                     </td>
                   </tr>

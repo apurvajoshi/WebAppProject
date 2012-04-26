@@ -44,5 +44,12 @@ public class PhotoDAO extends GenericDAO<Photo> {
 			return photo[0];
 		return null;
 	}
+
+	public Photo getPhotoByEventId(int oldEventId) throws RollbackException {
+		Photo[] photos = match(MatchArg.equals("eventId", oldEventId));
+		if(photos.length > 0)
+			return photos[0];
+		return null;
+	}
 }
 
