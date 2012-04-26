@@ -99,7 +99,7 @@ function MM_swapImage() { //v3.0
 					  	  </tr>
 					  	  <tr>
 					    	<td class="eventdeatils_normal">${ticket.ticketName}</td>
-					    	<td class="eventdeatils_normal">${ticket.ticketPrice}</td>
+					    	<td class="eventdeatils_normal">$ ${ticket.ticketPrice}</td>
 					    	<td><label for="quantity"></label>
 					      	<select name="quantity" id="quantity">
 					        <option value="1">1</option>

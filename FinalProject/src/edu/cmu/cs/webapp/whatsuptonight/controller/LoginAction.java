@@ -32,7 +32,7 @@ public class LoginAction extends Action {
         HttpSession session = request.getSession();
             	
     	if (session.getAttribute("user") != null) {
-        	return "home.jsp";
+        	return "home.do";
         }
         
         List<String> errors = new ArrayList<String>();

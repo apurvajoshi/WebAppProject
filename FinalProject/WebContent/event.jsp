@@ -65,6 +65,11 @@ $(function() {
 			            </td>
           			</tr>
           			<tr>
+			            <td>
+			            	<jsp:include page="error-list.jsp" />
+			            </td>
+          			</tr>
+          			<tr>
             			<td align="left"><br />
 							<table width="600px" border="0" cellspacing="0" cellpadding="0">
 							  <tr>

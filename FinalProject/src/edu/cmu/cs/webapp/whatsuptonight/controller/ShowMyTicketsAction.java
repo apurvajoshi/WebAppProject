@@ -82,7 +82,7 @@ public class ShowMyTicketsAction extends Action {
         	}
         	
             request.setAttribute("myTicketsList",myTicketsList);    
-    		return "myevents.jsp";       
+    		return "mytickets.jsp";       
 
 	        
 		} catch (RollbackException e) 

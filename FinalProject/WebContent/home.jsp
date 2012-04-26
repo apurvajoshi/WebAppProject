@@ -88,27 +88,30 @@ function MM_swapImage() { //v3.0
           <tr>
             <td><br/>
             	<table width="450px" border="0" cellspacing="0" cellpadding="0">
-            	
-            	<c:forEach var="event" items="${eventsList}">
+            	            	
+            	<% 
+            		Event[] eventsList = (Event[])request.getAttribute("eventsList");
+            		for(int i=0; i<eventsList.length; i++) 
+            		{
+                  		Date stDate = new Date(eventsList[i].getStartDate().toString()); 
+                  		GregorianCalendar stCal = new GregorianCalendar(stDate.getYear(), stDate.getMonth(), stDate.getDay());
+                  		String[] shortMonths = new DateFormatSymbols().getShortMonths();
+                  		String[] shortWeekdays = new DateFormatSymbols().getShortWeekdays();                  	
+            	%>
                   <tr>
                     <td>
                     	<table width="450px" border="0" cellspacing="0" cellpadding="0">
                           <tr>
-                          	<td width="110" rowspan="3" class="home_eventheading"><input width="90" height="35" type="image" name="imageField" id="imageField" src="image.do?eventId=${event.eventId}" /></td>
-                            <td width="350" height="25px" class="home_eventheading"><a href="userEventRegistration.do?eventId=${event.eventId}">${event.title}</a></td>
-                            <td width="100" class="home_eventdate">${event.startDate }</td>
+                          	<td width="110" rowspan="3" class="home_eventheading"><input width="90" height="35" type="image" name="imageField" id="imageField" src="image.do?eventId=<%= eventsList[i].getEventId() %>" /></td>
+                            <td width="350" height="25px" class="home_eventheading"><a href="userEventRegistration.do?eventId=<%= eventsList[i].getEventId()%>"><%= eventsList[i].getTitle() %></a></td>
+                            <td width="100" class="home_eventdate"><%= shortWeekdays[stCal.get(Calendar.DAY_OF_WEEK)] %>, <%= shortMonths[stCal.get(Calendar.MONTH)]%> <%= stCal.get(Calendar.DAY_OF_MONTH) %></td>
                           </tr>
-                          <tr>
-                          	<% 
-                          		String[] shortMonths = new DateFormatSymbols().getShortMonths();
-                          		String[] shortWeekdays = new DateFormatSymbols().getShortWeekdays();
-                          		Date stDate = new Date(((Event)request.getAttribute("event")).getStartTime());                 
-                          	%>
-                            <td class="home_eventwhen" height="18px"><b>When:</b><%= shortWeekdays[stDate.getDay()] %>, <%= shortMonths[stDate.getMonth()]%>, </td>
+                          <tr>                          	
+                            <td class="home_eventwhen" height="18px"><b>When:</b><%= shortMonths[stCal.get(Calendar.MONTH)]%> <%= stCal.get(Calendar.DAY_OF_MONTH) %>, <%= shortWeekdays[stCal.get(Calendar.DAY_OF_WEEK)] %>, <%= eventsList[i].getStartTime() %> </td>
                             <td></td>
                           </tr>  
                           <tr>
-                            <td class="home_eventwhen"><b>Where:</b>	${event.location}</td>
+                            <td class="home_eventwhen"><b>Where:</b>	<%= eventsList[i].getLocation() %></td>
                             <td>&nbsp;</td>
                           </tr>
                           <tr>
@@ -117,7 +120,9 @@ function MM_swapImage() { //v3.0
                 		</table>
             		</td>
            		</tr>
-           		</c:forEach>
+           		<%
+            		}
+           		%>
                 
 	        </table>
           
