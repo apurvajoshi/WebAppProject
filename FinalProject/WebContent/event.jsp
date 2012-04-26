@@ -10,6 +10,31 @@
 <style type="text/css">
 @import url("stylesheet.css");
 </style>
+	
+<link rel="stylesheet" href="css/jquery.ui.all.css"/>
+	<script src="javascript/jquery-1.7.2.js"></script>
+	<script src="javascript/jquery.ui.core.js"></script>
+	<script src="javascript/jquery.ui.widget.js"></script>
+	<script src="javascript/jquery.ui.datepicker.js"></script>
+	<link rel="stylesheet" href="css/demos.css"/>
+<script>
+$(function() {
+	$( "#startdatepicker" ).datepicker({
+		showOn: "button",
+		buttonImage: "images/calendar.gif",
+		buttonImageOnly: true
+	});
+});
+	</script>
+	<script>
+$(function() {
+	$( "#enddatepicker" ).datepicker({
+		showOn: "button",
+		buttonImage: "images/calendar.gif",
+		buttonImageOnly: true
+	});
+});
+	</script>
 </head>
 
 <body onload="MM_preloadImages('images/event1.png','images/viewevents1.png','images/tickets1.png')">
@@ -28,7 +53,7 @@
   </tr>
   <tr>
     <td>
-    <form method="post" action="createEvent.do">
+    <form method="post" action="createEvent.do" enctype="multipart/form-data">
     	<table width="100%" border="0" cellspacing="0" cellpadding="0">
       	<tr>
         	<td width="14%">&nbsp;</td>
@@ -49,6 +74,10 @@
 							  <tr>
 							    <td class="register_label">Event Details :</td>
 							    <td colspan="3"><textarea name="desc" rows="5" value="${form.desc}"></textarea></td>
+							  </tr>
+							  <tr>
+							    <td class="register_label">Upload Event Picture:</td>
+							    <td colspan="3"><input type="file" name="file" value="${form.file}" /></td>
 							  </tr>
 							  <tr>
 							    <td>&nbsp;</td>
@@ -82,13 +111,13 @@
 							  </tr>
 							  <tr>
 							    <td class="register_label">Event Start Date :</td>
-							    <td><input type="text" name="startDate" value="${form.startDate}" /></td>
+							    <td><input type="text" name="startDate" id="startdatepicker" value="${form.startDate}" /></td>
 							    <td><span class="register_label">Event End Date :</span></td>
 							    <td><input type="text" name="startTime" value="${form.startTime}" /></td>
 							  </tr>
 							  <tr>
 							    <td class="register_label">Event Start Time :</td>
-							    <td><input type="text" name="endDate" value="${form.endDate}" /></td>
+							    <td><input type="text" name="endDate" id="enddatepicker" value="${form.endDate}" /></td>
 							    <td><span class="register_label">Event End Time :</span></td>
 							    <td><input type="text" name="endTime" value="${form.endTime}" /></td>
 							  </tr>
