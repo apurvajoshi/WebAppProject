@@ -10,14 +10,13 @@ import javax.servlet.http.HttpSession;
 import org.genericdao.RollbackException;
 
 import edu.cmu.cs.webapp.whatsuptonight.databean.Event;
+import edu.cmu.cs.webapp.whatsuptonight.databean.MyTickets;
 import edu.cmu.cs.webapp.whatsuptonight.databean.Ticket;
 import edu.cmu.cs.webapp.whatsuptonight.databean.User;
-import edu.cmu.cs.webapp.whatsuptonight.databean.UserEventCreation;
 import edu.cmu.cs.webapp.whatsuptonight.databean.UserEventRegistration;
 import edu.cmu.cs.webapp.whatsuptonight.model.EventDAO;
 import edu.cmu.cs.webapp.whatsuptonight.model.Model;
 import edu.cmu.cs.webapp.whatsuptonight.model.TicketDAO;
-import edu.cmu.cs.webapp.whatsuptonight.model.UserEventCreationDAO;
 import edu.cmu.cs.webapp.whatsuptonight.model.UserEventRegistrationDAO;
 
 public class ShowMyTicketsAction extends Action {
@@ -41,7 +40,8 @@ public class ShowMyTicketsAction extends Action {
         
         int userId = ((User)session.getAttribute("user")).getUserId();
         
-		try {
+		try 
+		{
 	        
 			/* Get all the tickets for the user from the user event registration */
 			UserEventRegistration[] userTickets = uerDAO.getTicketsByUserId(userId);
@@ -66,17 +66,29 @@ public class ShowMyTicketsAction extends Action {
         	   }
         	}
 
+        	
+            List<MyTickets> myTicketsList = new ArrayList<MyTickets>();
         	for (int key : map.keySet()) 
         	{
         	    Ticket ticket = ticketDAO.getAllTicketsByTicketTypeId(key)[0];
+        	    Event event  = eventDAO.getEventsByEventId(ticket.getEventId());
+        	    MyTickets myTickets = new MyTickets();
+        	    myTickets.setEventId(event.getEventId());
+        	    myTickets.setDate(event.getStartDate());
+        	    myTickets.setTicketQty(map.get(key));
+        	    myTickets.setTitle(event.getTitle());
+        	    myTickets.setAmount(ticket.getTicketPrice() * map.get(key));
+        	    myTicketsList.add(myTickets);
         	}
-	       
+        	
+            request.setAttribute("myTicketsList",myTicketsList);    
+    		return "myevents.jsp";       
+
 	        
-		} catch (RollbackException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (RollbackException e) 
+		{
+			errors.add(e.getMessage());
+        	return "getpaymentdetails.jsp";
 		}
-        
-		return "myevents.jsp";       
-    }
+   }
 }

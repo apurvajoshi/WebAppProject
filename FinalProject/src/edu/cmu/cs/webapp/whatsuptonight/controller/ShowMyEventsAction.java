@@ -9,12 +9,10 @@ import javax.servlet.http.HttpSession;
 import org.genericdao.RollbackException;
 
 import edu.cmu.cs.webapp.whatsuptonight.databean.Event;
-import edu.cmu.cs.webapp.whatsuptonight.databean.Ticket;
 import edu.cmu.cs.webapp.whatsuptonight.databean.User;
 import edu.cmu.cs.webapp.whatsuptonight.databean.UserEventCreation;
 import edu.cmu.cs.webapp.whatsuptonight.model.EventDAO;
 import edu.cmu.cs.webapp.whatsuptonight.model.Model;
-import edu.cmu.cs.webapp.whatsuptonight.model.TicketDAO;
 import edu.cmu.cs.webapp.whatsuptonight.model.UserEventCreationDAO;
 
 public class ShowMyEventsAction extends Action {

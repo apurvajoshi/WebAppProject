@@ -19,7 +19,7 @@ public class Ticket {
 	public int getTicketTypeId() {
 		return ticketTypeId;
 	}
-	public void setTicketId(int ticketTypeId) {
+	public void setTicketTypeId(int ticketTypeId) {
 		this.ticketTypeId = ticketTypeId;
 	}
 	public String getTicketName() {

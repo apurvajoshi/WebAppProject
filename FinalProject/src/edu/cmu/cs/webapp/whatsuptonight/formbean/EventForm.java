@@ -21,7 +21,6 @@ public class EventForm extends FormBean{
 	private String endTime;
 	private String privacy;
 	private String category;
-	private String timeZone;
 	private String host;
 
 	private String ticketName;
@@ -110,12 +109,7 @@ public class EventForm extends FormBean{
 	public void setPrivacy(String privacy) {
 		this.privacy = privacy.trim();
 	}
-	public String getTimeZone() {
-		return timeZone;
-	}
-	public void setTimeZone(String timeZone) {
-		this.timeZone = timeZone.trim();
-	}
+	
 	public String getHost() {
 		return host;
 	}
@@ -160,7 +154,7 @@ public class EventForm extends FormBean{
 
         if (errors.size() > 0) return errors;
 
-        if (!action.equals("Create Event")) errors.add("Invalid button");
+        if (!action.equals("Create Event") && !action.equals("Save Event")) errors.add("Invalid button");
         if (title.matches(".*[<>\"].*")) errors.add("Title may not contain angle brackets or quotes");
         if (desc.matches(".*[<>\"].*")) errors.add("Description may not contain angle brackets or quotes");
         if (location.matches(".*[<>\"].*")) errors.add("Location may not contain angle brackets or quotes");
@@ -180,19 +174,20 @@ public class EventForm extends FormBean{
         if(end.before(start))
         	errors.add("Event End Date should be after Event Start Date.");
         	
-        
-        if (file == null || file.getFileName().length() == 0) {
-			errors.add("You must provide a file");
-			return errors;
-		}
-
-		if (file.getBytes().length == 0) {
-			errors.add("Zero length file");
-		}
-		
-		if (file.getBytes().length > 102400) {
-			errors.add("Image file size should be less than 100KB.");
-		}
+        if(action.equals("Create event")) {
+	        if (file == null || file.getFileName().length() == 0) {
+				errors.add("You must provide a file");
+				return errors;
+			}
+	
+			if (file.getBytes().length == 0) {
+				errors.add("Zero length file");
+			}
+			
+			if (file.getBytes().length > 102400) {
+				errors.add("Image file size should be less than 100KB.");
+			}
+        }
         
         return errors;
     }

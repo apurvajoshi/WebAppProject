@@ -1,4 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.text.DateFormatSymbols"%>
+<%@page import="java.util.*"%>
+<%@page import="edu.cmu.cs.webapp.whatsuptonight.databean.Event"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -91,11 +94,17 @@ function MM_swapImage() { //v3.0
                     <td>
                     	<table width="450px" border="0" cellspacing="0" cellpadding="0">
                           <tr>
+                          	<td width="110" rowspan="3" class="home_eventheading"><input width="90" height="35" type="image" name="imageField" id="imageField" src="image.do?eventId=${event.eventId}" /></td>
                             <td width="350" height="25px" class="home_eventheading"><a href="userEventRegistration.do?eventId=${event.eventId}">${event.title}</a></td>
                             <td width="100" class="home_eventdate">${event.startDate }</td>
                           </tr>
                           <tr>
-                            <td class="home_eventwhen" height="18px"><b>When:</b>	${event.startDate}</td>
+                          	<% 
+                          		String[] shortMonths = new DateFormatSymbols().getShortMonths();
+                          		String[] shortWeekdays = new DateFormatSymbols().getShortWeekdays();
+                          		Date stDate = new Date(((Event)request.getAttribute("event")).getStartTime());                 
+                          	%>
+                            <td class="home_eventwhen" height="18px"><b>When:</b><%= shortWeekdays[stDate.getDay()] %>, <%= shortMonths[stDate.getMonth()]%>, </td>
                             <td></td>
                           </tr>  
                           <tr>

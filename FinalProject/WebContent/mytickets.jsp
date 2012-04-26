@@ -1,4 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<%@page import="edu.cmu.cs.webapp.whatsuptonight.databean.MyTickets"%>
+<%@page import="java.util.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -69,72 +74,74 @@ function MM_swapImage() { //v3.0
           
           
           <tr>
-            <td class="discover"><br/>
+            <td class="discover">
+            <br/>
             My Tickets</td>
           </tr>
           <tr>
             <td class="discover">&nbsp;</td>
           </tr>
-          <tr>
-            <td class="discover"><table width="550px" border="0" cellspacing="0" cellpadding="0">
+          
+<%
+	ArrayList myTicketsList = (ArrayList)request.getAttribute("myTicketsList");
+	if (myTicketsList != null) 
+	{
+%>        
+
+		<tr>
+            <td class="discover">
+            <table width="550px" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td width="150px" class="home_eventheading">Event Name</td>
                 <td width="100px" class="home_eventheading">Date</td>
                 <td width="100px" class="home_eventheading">Tickets Quantity</td>
                 <td width="100px" class="home_eventheading">Total Amount</td>
               </tr>
-            </table></td>
+            </table>
+            </td>
           </tr>
-          <tr>
+          
+            <tr>
             <td><br/>
               <table width="550px" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td>
-                    <table width="550px" border="0" cellspacing="0" cellpadding="0">
-                    
-                    <c:forEach var="event" items="${ticketsList}">
-                    
+                    <table width="550px" border="0" cellspacing="0" cellpadding="0">  
+<%
+		for (int i = 0; i < myTicketsList.size(); i++) 
+		{
+			MyTickets myTicket = (MyTickets)myTicketsList.get(i);
+%>                              
                       <tr>
-                        <td width="150" height="25px" class="home_eventheading"><u>Holi Celebration</u></td>
-                        <td width="100" class="register_label">Wed, Apr 4</td>
+                        <td width="150" height="25px" class="home_eventheading"><a href="printTicket.do?id=<%=myTicket.getEventId()%>">
+                        <%=myTicket.getTitle() %></a></td>
+                        <td width="100" class="register_label"><%=myTicket.getDate() %></td>
                         <td width="100" class="register_label">
-                        	3
+                        	<%=myTicket.getTicketQty() %>
                         </td>
                         <td width="100" class="register_label">
-                        	$21.00
-                        </td>
-                        </tr>
-                      <tr>
-                        <td colspan="4" class="home_eventwhen" height="30px"><hr/></td>
-                      </tr>     
-                      
-                      
-                      <tr>
-                        <td width="150" height="25px" class="home_eventheading"><u>Diwali Celebration</u></td>
-                        <td width="100" class="register_label">Wed, Apr 10</td>
-                        <td width="100" class="register_label">
-                        	10
-                        </td>
-                        <td width="100" class="register_label">
-                        	$100.00
+                        	$<%=myTicket.getAmount() %>
                         </td>
                         </tr>
                       <tr>
                         <td colspan="4" class="home_eventwhen" height="30px"><hr/></td>
                       </tr>     
+ <%
+		}
+ 
+ %>                     
                       
-                      
-                      <tr>
-                        <td width="150" height="25px" class="home_eventheading"><u>Happy Hour</u></td>
-                        <td width="100" class="register_label">Wed, Apr 14</td>
-                        <td width="100" class="register_label">15</td>
-                        <td width="100" class="register_label">$75.00</td>
-                        </tr>
-                      <tr>
-                        <td colspan="4" class="home_eventwhen" height="30px"><hr/></td>
-                      </tr>     
-                      
-                      
+<%
+	}
+	else
+	{
+%>                  
+     	<c:forEach var="error" items="${errors}">
+			<h4 style="color:red"> ${error} </h4>
+		</c:forEach>
+<%
+	}
+%>                 
                                  
                       </table>
                     </td>
@@ -147,6 +154,10 @@ function MM_swapImage() { //v3.0
               
               </td>
           </tr>
+          
+          
+          
+          
         </table></td>
         <td>&nbsp;</td>
       </tr>

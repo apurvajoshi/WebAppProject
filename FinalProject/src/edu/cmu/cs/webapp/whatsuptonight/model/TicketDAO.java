@@ -43,4 +43,11 @@ public class TicketDAO extends GenericDAO<Ticket> {
 			return tickets;
 		return null;
 	}
+	
+	public Ticket getTicketByEventId(int eventId) throws RollbackException {
+		Ticket[] tickets = match(MatchArg.equals("eventId", eventId));
+		if(tickets.length > 0)
+			return tickets[0];
+		return null;
+	}
 }
