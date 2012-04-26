@@ -168,11 +168,16 @@ public class EventForm extends FormBean{
         if (ticketQty.matches(".*[<>\"].*")) errors.add("Ticket Quantity may not contain angle brackets or quotes");
         if (ticketPrice.matches(".*[<>\"].*")) errors.add("Ticket Price may not contain angle brackets or quotes");
         
+        try {
         Date end = new Date(endDate);
         Date start = new Date(startDate);
         
         if(end.before(start))
         	errors.add("Event End Date should be after Event Start Date.");
+        
+        } catch (IllegalArgumentException e) {
+        	errors.add("Date should be in MM/DD/YYYY format.");
+        }
         	
         if(action.equals("Create event")) {
 	        if (file == null || file.getFileName().length() == 0) {

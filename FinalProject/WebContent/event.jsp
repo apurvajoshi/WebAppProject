@@ -65,6 +65,11 @@ $(function() {
 			            </td>
           			</tr>
           			<tr>
+			            <td>
+			            	<jsp:include page="error-list.jsp" />
+			            </td>
+          			</tr>
+          			<tr>
             			<td align="left"><br />
 							<table width="600px" border="0" cellspacing="0" cellpadding="0">
 							  <tr>
@@ -95,15 +100,7 @@ $(function() {
 							    <td class="register_label">&nbsp;</td>
 							    <td colspan="3">&nbsp;</td>
 							  </tr>
-							  <tr>
-							    <td class="register_label">Time Zone :</td>
-							    <td colspan="3">
-							      <select name="timeZone" value="${form.timeZone}">
-							        <option value="1">EST</option>
-							        <option value="2">PST</option>
-							        <option value="3">GMT</option>
-							      </select>
-							    </td>
+							  <tr>							    
 							  </tr>
 							  <tr>
 							    <td>&nbsp;</td>
