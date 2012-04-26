@@ -16,7 +16,6 @@ public class Event {
 	private Date endDate;
 	private String endTime;
 	private String privacy;
-	private String timeZone;
 	private String category;
 	private String organization;
 	private Date insertTime;
@@ -81,12 +80,7 @@ public class Event {
 	public void setPrivacy(String privacy) {
 		this.privacy = privacy;
 	}
-	public String getTimeZone() {
-		return timeZone;
-	}
-	public void setTimeZone(String timeZone) {
-		this.timeZone = timeZone;
-	}
+	
 	public String getCategory() {
 		return category;
 	}
