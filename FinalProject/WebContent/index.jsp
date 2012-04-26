@@ -76,7 +76,7 @@
 					    <td>&nbsp;</td>
 					  </tr>
 					  <tr>
-					    <td colspan="2" class="register_label">New User? <a href="">Register here</a></td>
+					    <td colspan="2" class="register_label">New User? <a href="register.jsp">Register here</a></td>
 					    </tr>
 				</table>
 				</form>

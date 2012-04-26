@@ -29,7 +29,9 @@ public class EventDAO extends GenericDAO<Event> {
 	}
 	
 	public Event[] getAllEvents() throws RollbackException {
-		Event[] events = match();		
-		return events;
+		Event[] events = match();	
+		if(events.length > 0)
+			return events;
+		return null;
 	}
 }

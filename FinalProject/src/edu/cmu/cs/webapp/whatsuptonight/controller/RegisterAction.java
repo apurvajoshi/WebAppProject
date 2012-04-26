@@ -6,8 +6,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
-import org.genericdao.DuplicateKeyException;
 import org.genericdao.RollbackException;
 import org.mybeans.form.FormBeanException;
 import org.mybeans.form.FormBeanFactory;
@@ -31,9 +29,10 @@ public class RegisterAction extends Action {
     
     public String perform(HttpServletRequest request) {
         HttpSession session = request.getSession();
-            	
+        
+        // If user is already logged in, redirect to home.do
         if (session.getAttribute("user") != null) {
-        	return "home.jsp";
+        	return "home.do";
         }
         
         List<String> errors = new ArrayList<String>();
@@ -53,35 +52,29 @@ public class RegisterAction extends Action {
 	            return "register.jsp";
 	        }
 	        
-       		if (form.getAction().equals("Register")) {
-       		
-       			User newUser = new User();       			
-       			newUser.setFirstName(form.getFirstName());
-       			newUser.setLastName(form.getLastName());
-       			newUser.setEmailId(form.getEmailId());
-       			newUser.setPassword(form.getPassword());
-       			newUser.setCity(form.getCity());    			
+   			User newUser = new User();       			
+   			newUser.setFirstName(form.getFirstName());
+   			newUser.setLastName(form.getLastName());
+   			newUser.setEmailId(form.getEmailId());
+   			newUser.setPassword(form.getPassword());
+   			newUser.setCity(form.getCity());    			
+   			
+       		if(userDAO.readByEmailId(form.getEmailId()) != null)
+       		{
+       			errors.add("A user with this email id already exists");
+        	    return "register.jsp";	
+       		}
+   				
+       		userDAO.createAutoIncrement(newUser);	       			
+       		session.setAttribute("user", newUser);
        			
-       			try {
-       				/* TO DO - check for duplicate email Id here */
-       				
-	       			userDAO.createAutoIncrement(newUser);	       			
-	       			session.setAttribute("user", newUser);
-	       			
-	       			return "home.jsp";
-       	        } catch (DuplicateKeyException e) {
-       	        	errors.add("A user with this name already exists");
-       	        	return "register.jsp";
-       			} 
-       		} 
-	        
-	        return "register.jsp";
+       		return "home.do";	        
         } catch (RollbackException e) {        	
         	errors.add(e.getMessage());
-        	return "error.jsp";
+        	return "register.jsp";
         } catch (FormBeanException e) {
         	errors.add(e.getMessage());
-        	return "error.jsp";
+        	return "register.jsp";
         }
     }
 }

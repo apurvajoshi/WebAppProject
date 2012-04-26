@@ -8,8 +8,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
-import org.genericdao.DuplicateKeyException;
 import org.genericdao.RollbackException;
 import org.mybeans.form.FileProperty;
 import org.mybeans.form.FormBeanException;
@@ -21,12 +19,10 @@ import edu.cmu.cs.webapp.whatsuptonight.databean.Ticket;
 import edu.cmu.cs.webapp.whatsuptonight.databean.User;
 import edu.cmu.cs.webapp.whatsuptonight.databean.UserEventCreation;
 import edu.cmu.cs.webapp.whatsuptonight.formbean.EventForm;
-import edu.cmu.cs.webapp.whatsuptonight.formbean.RegisterForm;
 import edu.cmu.cs.webapp.whatsuptonight.model.EventDAO;
 import edu.cmu.cs.webapp.whatsuptonight.model.Model;
 import edu.cmu.cs.webapp.whatsuptonight.model.PhotoDAO;
 import edu.cmu.cs.webapp.whatsuptonight.model.TicketDAO;
-import edu.cmu.cs.webapp.whatsuptonight.model.UserDAO;
 import edu.cmu.cs.webapp.whatsuptonight.model.UserEventCreationDAO;
 
 

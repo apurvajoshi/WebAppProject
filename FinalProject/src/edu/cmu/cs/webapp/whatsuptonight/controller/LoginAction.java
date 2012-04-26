@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.genericdao.RollbackException;
 import org.mybeans.form.FormBeanException;
 import org.mybeans.form.FormBeanFactory;
 
@@ -42,7 +43,7 @@ public class LoginAction extends Action {
 	        request.setAttribute("form",form);
 
 	        if (!form.isPresent()) {
-	            return "welcome.jsp";
+	            return "index.jsp";
 	        }
 
 	        errors.addAll(form.getValidationErrors());
@@ -69,6 +70,9 @@ public class LoginAction extends Action {
        		}
 	        return "index.jsp";
         } catch (FormBeanException e) {
+        	errors.add(e.getMessage());
+        	return "error.jsp";
+        } catch (RollbackException e) {
         	errors.add(e.getMessage());
         	return "error.jsp";
         }

@@ -169,7 +169,6 @@ public class EventForm extends FormBean{
         if (startTime.matches(".*[<>\"].*")) errors.add("Start Time may not contain angle brackets or quotes");
         if (endDate.matches(".*[<>\"].*")) errors.add("End Date may not contain angle brackets or quotes");
         if (endTime.matches(".*[<>\"].*")) errors.add("End Time may not contain angle brackets or quotes");
-        if (timeZone.matches(".*[<>\"].*")) errors.add("Time Zone may not contain angle brackets or quotes");
         if (host.matches(".*[<>\"].*")) errors.add("Host may not contain angle brackets or quotes");
         if (ticketName.matches(".*[<>\"].*")) errors.add("Ticket Name may not contain angle brackets or quotes");
         if (ticketQty.matches(".*[<>\"].*")) errors.add("Ticket Quantity may not contain angle brackets or quotes");

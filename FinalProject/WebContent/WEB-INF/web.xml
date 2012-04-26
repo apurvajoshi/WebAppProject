@@ -3,9 +3,9 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
          version="2.4">
 
-    <display-name>MVC ToDoList</display-name>
+    <display-name>WatzUpTonight</display-name>
     <description>
-      MVC ToDoList
+     WatzUpTonight
     </description>
 
     <servlet>
@@ -34,17 +34,17 @@
     </servlet-mapping>
 	
 	<servlet-mapping>
+        <servlet-name>  controller-servlet        </servlet-name>
+        <url-pattern>   /welcome                    </url-pattern>
+    </servlet-mapping>
+	
+	<servlet-mapping>
         <servlet-name>   image-servlet            </servlet-name>
         <url-pattern>    /image                   </url-pattern>
     </servlet-mapping>
 
-    <!-- <servlet-mapping>
-        <servlet-name>  controller-servlet        </servlet-name>
-        <url-pattern>   /login                    </url-pattern>
-    </servlet-mapping>  -->
-
     <welcome-file-list>
-        <welcome-file>   welcome.do   </welcome-file>
+        <welcome-file>   welcome   </welcome-file>
     </welcome-file-list>
 
 </web-app>
