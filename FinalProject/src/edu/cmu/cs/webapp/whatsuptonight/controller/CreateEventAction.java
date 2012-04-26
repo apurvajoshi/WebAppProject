@@ -77,7 +77,6 @@ public class CreateEventAction extends Action {
        			newEvent.setStartTime(form.getStartTime());
        			newEvent.setEndDate(new Date(form.getEndDate()));
        			newEvent.setEndTime(form.getEndTime());
-       			newEvent.setTimeZone(form.getTimeZone());
        			newEvent.setCategory(form.getCategory());
        			newEvent.setPrivacy(form.getPrivacy());
        			newEvent.setOrganization(form.getHost());
