@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import edu.cmu.cs.webapp.whatsuptonight.databean.User;
 import edu.cmu.cs.webapp.whatsuptonight.model.Model;
 
@@ -22,6 +21,9 @@ public class Controller extends HttpServlet {
         Action.add(new RegisterAction(model));
         Action.add(new LoginAction(model));
         Action.add(new CreateEventAction(model));
+        Action.add(new PaymentAction(model));
+        Action.add(new UserEventRegistrationAction(model));
+        Action.add(new PaymentConfirmationAction(model));
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -46,20 +48,23 @@ public class Controller extends HttpServlet {
         String      action = getActionName(servletPath);
                
         System.out.println("action is "+action);
-       
-        if (action.equals("register.do")) {
+        
+        if (user == null && action.equals("register.do")) {
 			return Action.perform("register.do",request);
         }
         
-        if (action.equals("login.do")) {
+        if (user == null) {
+        	// If the user hasn't logged in, so login is the only option
 			return Action.perform("login.do",request);
         }
-
-        if (action.equals("createEvent.do")) {
-			return Action.perform("createEvent.do",request);
+        
+        if (action.equals("welcome")) {
+        	// User is logged in, but at the root of our web app
+			return Action.perform("home.do",request);
         }
         
-        return null;
+      	// Let the logged in user run his chosen action
+		return Action.perform(action,request);
 		
     }
     
@@ -70,6 +75,7 @@ public class Controller extends HttpServlet {
      *    This is the common case
      */
     private void sendToNextPage(String nextPage, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    	
     	if (nextPage == null) {
     		response.sendError(HttpServletResponse.SC_NOT_FOUND,request.getServletPath());
     		return;
@@ -80,24 +86,13 @@ public class Controller extends HttpServlet {
 			return;
     	}
     	
-    	if (nextPage.endsWith(".jsp")) {
+    	if (nextPage.endsWith(".jsp") || nextPage.equals("image")) {
 	   		RequestDispatcher d = request.getRequestDispatcher(nextPage);
 	   		d.forward(request,response);
 	   		return;
     	}
-    	
-    	if (nextPage.charAt(0) == '/') {
-			String host  = request.getServerName();
-			String port  = ":"+String.valueOf(request.getServerPort());
-			if (port.equals(":80")) port = "";
-			response.sendRedirect("http://"+host+port+nextPage);
-			return;
-    	}
-    	
-    	RequestDispatcher d = request.getRequestDispatcher("/"+nextPage);
-   		d.forward(request,response);
-    	
-    	//throw new ServletException(Controller.class.getName()+".sendToNextPage(\"" + nextPage + "\"): invalid extension.");
+
+    	throw new ServletException(Controller.class.getName()+".sendToNextPage(\"" + nextPage + "\"): invalid extension.");
     }
 
 	/*

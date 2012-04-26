@@ -1,3 +1,6 @@
+
+<%@page import="edu.cmu.cs.webapp.whatsuptonight.databean.Ticket"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -70,7 +73,7 @@ function MM_swapImage() { //v3.0
           
           <tr>
             <td class="discover"><br/>
-            Holi Celebration</td>
+            ${event.title}</td>
           </tr>
           <tr>
             <td class="discover"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -93,8 +96,8 @@ function MM_swapImage() { //v3.0
     
   </tr>
   <tr>
-    <td class="eventdeatils_normal">Normal Ticket</td>
-    <td class="eventdeatils_normal">$10.00</td>
+    <td class="eventdeatils_normal">${ticket.ticketName}</td>
+    <td class="eventdeatils_normal">${ticket.ticketPrice}</td>
     <td><label for="quantity"></label>
       <select name="quantity" id="quantity">
         <option value="1">1</option>
@@ -103,7 +106,8 @@ function MM_swapImage() { //v3.0
         <option value="4">4</option>
         <option value="5">5</option>
         <option value="6">6</option>
-      </select></td>
+      </select>
+      </td>
     
   </tr>
   <tr>
@@ -129,15 +133,10 @@ function MM_swapImage() { //v3.0
   </tr>
   <tr>
     <td class="eventdeatils_normal">
-    
-    An eventful evening with performances, Indian food and a DJ lined up! <br/><br/>
+    ${event.description} <br/><br/>
+When: ${event.startDate}<br/>
+Where: ${event.location} ${event.city}<br/>
 
-IGSA representatives will be selling Holi tickets next week:<br/><br/>
-When: 15th-17th March 2011, 4-30 pm to 6-30pm, or until tickets last!<br/>
-Where: Gates Hillman Center cafe (3rd floor)<br/>
-Prices: 5$ for members<br/>
-10$ for non-members<br/>
-Tickets (if available) will be priced higher at the door on the day of the event
 
     
     
