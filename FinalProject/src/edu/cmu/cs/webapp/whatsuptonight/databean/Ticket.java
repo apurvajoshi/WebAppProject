@@ -2,9 +2,9 @@ package edu.cmu.cs.webapp.whatsuptonight.databean;
 
 import org.genericdao.PrimaryKey;
 
-@PrimaryKey("ticketId")
+@PrimaryKey("ticketTypeId")
 public class Ticket {
-	private int ticketId;
+	private int ticketTypeId;
 	private String ticketName;
 	private int ticketQty;
 	private int ticketPrice;
@@ -16,11 +16,11 @@ public class Ticket {
 	public void setEventId(int eventId) {
 		this.eventId = eventId;
 	}
-	public int getTicketId() {
-		return ticketId;
+	public int getTicketTypeId() {
+		return ticketTypeId;
 	}
-	public void setTicketId(int ticketId) {
-		this.ticketId = ticketId;
+	public void setTicketId(int ticketTypeId) {
+		this.ticketTypeId = ticketTypeId;
 	}
 	public String getTicketName() {
 		return ticketName;

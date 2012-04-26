@@ -9,7 +9,8 @@ import java.sql.SQLException;
 import org.genericdao.ConnectionPool;
 import org.genericdao.DAOException;
 import org.genericdao.GenericDAO;
-
+import org.genericdao.MatchArg;
+import org.genericdao.RollbackException;
 import edu.cmu.cs.webapp.whatsuptonight.databean.Ticket;
 
 public class TicketDAO extends GenericDAO<Ticket> {
@@ -34,5 +35,12 @@ public class TicketDAO extends GenericDAO<Ticket> {
 		query_string.close();
 		
 		return ticketId;
+	}
+	
+	public Ticket[] getAllTicketsByTicketTypeId(int ticketTypeId) throws RollbackException {
+		Ticket[] tickets =  match(MatchArg.equals("ticketTypeId", ticketTypeId));
+		if(tickets.length > 0)
+			return tickets;
+		return null;
 	}
 }

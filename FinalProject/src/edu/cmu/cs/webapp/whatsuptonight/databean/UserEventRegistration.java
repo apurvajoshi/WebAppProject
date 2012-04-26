@@ -2,19 +2,12 @@ package edu.cmu.cs.webapp.whatsuptonight.databean;
 
 import org.genericdao.PrimaryKey;
 
-@PrimaryKey("registerId")
+@PrimaryKey("ticketId")
 public class UserEventRegistration {
-	private int registerId;
+	private int ticketId;
 	private int userId;
 	private int ticketTypeId;
-	private int ticketId;
 	
-	public int getRegisterId() {
-		return registerId;
-	}
-	public void setRegisterId(int registerId) {
-		this.registerId = registerId;
-	}
 	public int getUserId() {
 		return userId;
 	}
