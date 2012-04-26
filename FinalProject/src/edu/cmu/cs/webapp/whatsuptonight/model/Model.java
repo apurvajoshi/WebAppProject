@@ -12,12 +12,9 @@ public class Model {
 	private EventDAO eventDAO;
 	private TicketDAO ticketDAO;
 	private UserEventCreationDAO ueDAO;
-<<<<<<< HEAD
 	private PaymentDAO paymentDAO;
 	private UserEventRegistrationDAO userEventRegistrationDAO;
-=======
 	private PhotoDAO photoDAO;
->>>>>>> d8ca10a41e8901bb14a51cf0c060b176438b87f2
 
 	public Model(ServletConfig config) throws ServletException {
 		try {
@@ -30,12 +27,9 @@ public class Model {
 			eventDAO = new EventDAO("events", pool);
 			ticketDAO = new TicketDAO("tickets", pool);
 			ueDAO = new UserEventCreationDAO("user_event_creation", pool);
-<<<<<<< HEAD
 			paymentDAO = new PaymentDAO("payment_details", pool);
 			userEventRegistrationDAO = new UserEventRegistrationDAO("user_event_registration", pool);
-=======
 			photoDAO = new PhotoDAO("photos", pool);
->>>>>>> d8ca10a41e8901bb14a51cf0c060b176438b87f2
 			
 		} catch (DAOException e) {
 			throw new ServletException(e);
@@ -46,11 +40,7 @@ public class Model {
 	public EventDAO getEventDAO()  { return eventDAO; }
 	public TicketDAO getTicketDAO()  { return ticketDAO; }
 	public UserEventCreationDAO getUserEventCreationDAO()  { return ueDAO; }
-<<<<<<< HEAD
 	public PaymentDAO getPaymentDAO() { return paymentDAO; }
 	public UserEventRegistrationDAO getUserEventRegistrationDAO() { return userEventRegistrationDAO; }
-
-=======
 	public PhotoDAO getPhotoDAO() { return photoDAO; }
->>>>>>> d8ca10a41e8901bb14a51cf0c060b176438b87f2
 }
