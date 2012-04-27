@@ -34,6 +34,7 @@ public class Controller extends HttpServlet {
         Action.add(new UpdateProfileAction(model));
         Action.add(new LogOutAction(model));
         Action.add(new SearchAction(model));
+        Action.add(new GoogleCalendar(model));
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -58,6 +59,10 @@ public class Controller extends HttpServlet {
         String      action = getActionName(servletPath);
                
         System.out.println("action is "+action);
+        
+        if(action.equals("addCalendar.do")) {
+        	return Action.perform("addCalendar.do", request);
+        }
         
         if (user == null && action.equals("register.do")) {
 			return Action.perform("register.do",request);
