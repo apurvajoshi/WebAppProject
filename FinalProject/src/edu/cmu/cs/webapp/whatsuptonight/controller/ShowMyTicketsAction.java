@@ -81,7 +81,8 @@ public class ShowMyTicketsAction extends Action {
         	    myTicketsList.add(myTickets);
         	}
         	        	
-            request.setAttribute("myTicketsList",myTicketsList);    
+            request.setAttribute("myTicketsList",myTicketsList);   
+            
     		return "mytickets.jsp";       
 
 	        

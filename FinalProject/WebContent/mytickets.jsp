@@ -59,9 +59,16 @@ function MM_swapImage() { //v3.0
 
           <tr>
             <td class="discover">
-            <c:forEach var="msg" items="${msgs}">
-				<h3 style="color:red"> ${msgs} </h3>
-			</c:forEach>
+<%
+
+		String msg = (String)request.getAttribute("msg");
+		if(msg != null)
+		{
+%>
+				<h3 style="color:red"><%=msg%> </h3>
+<%
+		}
+%>
             
             <br/>
             My Tickets</td>
