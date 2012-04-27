@@ -88,6 +88,12 @@ public class Controller extends HttpServlet {
     		return;
     	}
     	
+    	if (nextPage.equals("showMyTickets.do")) {
+    		RequestDispatcher d = request.getRequestDispatcher(nextPage);
+	   		d.forward(request,response);
+			return;
+    	}
+    	
     	if (nextPage.endsWith(".do")) {
 			response.sendRedirect(nextPage);
 			return;

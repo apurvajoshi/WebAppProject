@@ -66,7 +66,7 @@ private FormBeanFactory<EventForm> formBeanFactory = FormBeanFactory.getInstance
        			oldEvent.setTitle(form.getTitle());
        			oldEvent.setDescription(form.getDesc());
        			oldEvent.setLocation(form.getLocation());
-       			oldEvent.setCity(form.getCity());
+       			oldEvent.setCity(form.getCity());       			
        			Date temp1 = new Date(form.getStartDate());
        			temp1.setHours(Integer.parseInt(form.getStartHour()));
        			temp1.setMinutes(Integer.parseInt(form.getStartMins()));
@@ -101,6 +101,9 @@ private FormBeanFactory<EventForm> formBeanFactory = FormBeanFactory.getInstance
        			
 	       		ticketDAO.update(oldTicket);
 	       			       		
+	       		/* Send email to all users who are registered for the event */
+	       		
+	       		
 	       		/*int userId = ((User)session.getAttribute("user")).getUserId();
 	       			
 	       		if(oldEventId != -1) {
