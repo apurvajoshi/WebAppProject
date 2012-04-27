@@ -46,7 +46,7 @@ public class ShowMyTicketsAction extends Action {
 			/* Get all the tickets for the user from the user event registration */
 			UserEventRegistration[] userTickets = uerDAO.getTicketsByUserId(userId);
 						
-	        if(userTickets.length == 0) 
+	        if(userTickets == null || userTickets.length == 0) 
 	        {
 	        	errors.add("No ticket has yet been purchased");
 	        	return "mytickets.jsp";

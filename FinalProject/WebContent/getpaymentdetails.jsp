@@ -103,7 +103,7 @@
 		<h4 style="color:red"> ${error} </h4>
 </c:forEach>
 
-<h1>Enter your card details</h1>
+<h3>Enter your card details</h3>
         <!-- to display errors returned by createToken -->
         <span class="payment-errors"></span>
         <form method="POST" id="payment-form" action="payment.do">        
