@@ -93,11 +93,12 @@ function MM_swapImage() { //v3.0
             	            	
             	<% 
             		Event[] eventsList = (Event[])request.getAttribute("eventsList");
+	            	Format f1 = new SimpleDateFormat("MMM d, yyyy HH:mm");
+	    			Format f2 = new SimpleDateFormat("EEE");
+	    			Format f3 = new SimpleDateFormat("MMM d");
             		for(int i=0; i<eventsList.length; i++) 
             		{
-            			Format f1 = new SimpleDateFormat("MMM d, yyyy HH:mm");
-            			Format f2 = new SimpleDateFormat("EEE");
-            			Format f3 = new SimpleDateFormat("MMM d");
+            			
             	%>
                   <tr>
                     <td>

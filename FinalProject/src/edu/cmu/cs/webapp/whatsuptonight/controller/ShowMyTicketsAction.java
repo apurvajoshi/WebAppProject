@@ -70,7 +70,7 @@ public class ShowMyTicketsAction extends Action {
             List<MyTickets> myTicketsList = new ArrayList<MyTickets>();
         	for (int key : map.keySet()) 
         	{
-        	    Ticket ticket = ticketDAO.getAllTicketsByTicketTypeId(key)[0];
+        	    Ticket ticket = ticketDAO.getTicketByTicketTypeId(key);
         	    Event event  = eventDAO.getEventsByEventId(ticket.getEventId());
         	    MyTickets myTickets = new MyTickets();
         	    myTickets.setEventId(event.getEventId());
