@@ -85,6 +85,11 @@ $(function() {
 			            </td>
           			</tr>
           			<tr>
+			            <td class="discover">
+			            	<jsp:include page="error-list.jsp" />
+			            </td>
+          			</tr>
+          			<tr>
             			<td align="left"><br />
 							<table width="600px" border="0" cellspacing="0" cellpadding="0">
 							  <tr>
@@ -217,10 +222,13 @@ $(function() {
 							  <tr>
 							    <td class="register_label">Category :</td>
 							    <td colspan="3"><select name="category" value="<%= event.getCategory() %>">
-							      <option value="Sports">Sports</option>
 							      <option value="Business">Business</option>
-							      <option value="Entertainment">Entertainment</option>
+							      <option value="Technology">Technology</option>
+							      <option value="Art & Music">Art & Music</option>
 							      <option value="Food">Food</option>
+							      <option value="Travel">Travel</option>
+							      <option value="Sports">Sports</option>
+							      <option value="Entertainment">Entertainment</option>
 							    </select>
 							    </td>
 							  </tr>

@@ -83,31 +83,31 @@
 				    <td>
 				      <p>
 				        <label>
-				          <input type="checkbox" name="Category" value="1" id="Category_0" />
+				          <input type="checkbox" name="category" value="Business"/>
 				          Business</label>
 				        <br />
 				        <label>
-				          <input type="checkbox" name="Category" value="2" id="Category_1" />
+				          <input type="checkbox" name="category" value="Technology" />
 				          Technology</label>
 				        <br />
 				        <label>
-				          <input type="checkbox" name="Category" value="3" id="Category_2" />
+				          <input type="checkbox" name="category" value="Art & Music" />
 				          Art & Music</label>
 				        <br />
 				        <label>
-				          <input type="checkbox" name="Category" value="4" id="Category_3" />
+				          <input type="checkbox" name="category" value="Food" />
 				          Food</label>
 				        <br />
 				        <label>
-				          <input type="checkbox" name="Category" value="5" id="Category_4" />
+				          <input type="checkbox" name="category" value="Travel" />
 				          Travel</label>
 				        <br />
 				        <label>
-				          <input type="checkbox" name="Category" value="6" id="Category_5" />
+				          <input type="checkbox" name="category" value="Sports" />
 				          Sports</label>
 				        <br />
 				        <label>
-				          <input type="checkbox" name="Category" value="7" id="Category_6" />
+				          <input type="checkbox" name="category" value="Entertainment" />
 				          Entertainment</label>
 				        <br />
 				      </p>
