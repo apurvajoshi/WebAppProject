@@ -1,3 +1,4 @@
+
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.Format"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -41,6 +42,7 @@ function MM_swapImage() { //v3.0
 </script>
 </head>
 
+<<<<<<< HEAD
 <body onload="MM_preloadImages('images/home1.png','images/event1.png','images/viewevents1.png','images/tickets1.png')">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
@@ -69,13 +71,19 @@ function MM_swapImage() { //v3.0
     </table></td>
   </tr>
   <tr>
+=======
+<body onload="MM_preloadImages('images/event1.png','images/viewevents1.png','images/tickets1.png')">
+<jsp:include page="header.jsp" />
+
+<tr>
+>>>>>>> 9ad4136460698431eb02908715de3a509fed4813
     <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td width="14%">&nbsp;</td>
         <td width="72%"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td class="discover">
-            <br/>
+            <br/>			
 			<jsp:include page="error-list.jsp" />
             
             <br/>Discover Events at Pittsburgh</td>
@@ -98,6 +106,7 @@ function MM_swapImage() { //v3.0
 	    			Format f3 = new SimpleDateFormat("MMM d");
 	    			
             		Event[] eventsList = (Event[])request.getAttribute("eventsList");
+
             		if(eventsList != null) 
    		     		{
             			if(eventsList.length > 0)

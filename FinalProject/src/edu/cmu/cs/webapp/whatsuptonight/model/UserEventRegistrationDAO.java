@@ -19,4 +19,9 @@ public class UserEventRegistrationDAO extends GenericDAO<UserEventRegistration> 
 			return userTickets;
 		return null;
 	}
+	
+	public int getTicketCountByTicketTypeId(int ticketTypeId) throws RollbackException {
+		UserEventRegistration[] userTickets = match(MatchArg.equals("ticketTypeId", ticketTypeId));
+		return userTickets.length;
+	}
 }

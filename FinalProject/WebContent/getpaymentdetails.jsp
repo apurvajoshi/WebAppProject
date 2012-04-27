@@ -72,6 +72,7 @@
 </head>
 <body onload="MM_preloadImages('images/home1.png','images/event1.png','images/viewevents1.png','images/tickets1.png')">
 
+<<<<<<< HEAD
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td height="50" valign="middle" bgcolor="#3B5998"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -98,6 +99,9 @@
       </tr>
     </table></td>
   </tr>
+=======
+<jsp:include page="header.jsp" />
+>>>>>>> 9ad4136460698431eb02908715de3a509fed4813
 </table>
 
 <c:forEach var="error" items="${errors}">

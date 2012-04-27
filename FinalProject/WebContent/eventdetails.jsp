@@ -1,5 +1,4 @@
 
-<%@page import="edu.cmu.cs.webapp.whatsuptonight.databean.Ticket"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -38,6 +37,7 @@ function MM_swapImage() { //v3.0
 </script>
 </head>
 
+<<<<<<< HEAD
 <body onload="MM_preloadImages('images/home1.png', 'images/event1.png','images/viewevents1.png','images/tickets1.png')">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
@@ -66,15 +66,20 @@ function MM_swapImage() { //v3.0
     </table></td>
   </tr>
   <tr>
+=======
+<body onload="MM_preloadImages('images/event1.png','images/viewevents1.png','images/tickets1.png')">
+<jsp:include page="header.jsp" />
+
+
+<tr>
+>>>>>>> 9ad4136460698431eb02908715de3a509fed4813
     <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td width="14%">&nbsp;</td>
         <td width="72%"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-          
-          
           <tr>
             <td class="discover">
-            <br/>
+            <br/>								
             	<jsp:include page="error-list.jsp" />
             <br/>
             ${event.title}</td>

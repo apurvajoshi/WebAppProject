@@ -1,3 +1,4 @@
+<%@page import="edu.cmu.cs.webapp.whatsuptonight.databean.EventList"%>
 <%@page import="edu.cmu.cs.webapp.whatsuptonight.databean.Event"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.Format"%>
@@ -41,6 +42,7 @@ function MM_swapImage() { //v3.0
 </script>
 </head>
 
+<<<<<<< HEAD
 <body onload="MM_preloadImages('images/home1.png', 'images/event1.png','images/viewevents1.png','images/tickets1.png')">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
@@ -68,13 +70,21 @@ function MM_swapImage() { //v3.0
       </tr>
     </table></td>
   </tr>
+=======
+<body onload="MM_preloadImages('images/event1.png','images/viewevents1.png','images/tickets1.png')">
+<jsp:include page="header.jsp" />
+>>>>>>> 9ad4136460698431eb02908715de3a509fed4813
   <tr>
     <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td width="14%">&nbsp;</td>
         <td width="72%"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           
-          
+<%
+	ArrayList myEventsList = (ArrayList)request.getAttribute("eventsList");
+	if (myEventsList != null) 
+	{
+%>     
           <tr>
             <td class="discover"><br/>My Events</td>
           </tr>
@@ -98,26 +108,39 @@ function MM_swapImage() { //v3.0
                     <table width="470px" border="0" cellspacing="5" cellpadding="0">
  <%
  					Format f = new SimpleDateFormat("EEE, d MMM yyyy HH:mm");
-					ArrayList eventsList = (ArrayList)request.getAttribute("eventsList");
-
- 					for(int i = 0; i < eventsList.size(); i++)
+ 
+ 					for(int i = 0; i < myEventsList.size(); i++)
  					{
- 						Event myEvent = (Event)eventsList.get(i);
+ 						
+ 						EventList myEvent = (EventList)myEventsList.get(i);
 
  %>
                       <tr>
-                        <td width="150" height="25px" class="home_eventheading"><u><a href="displayEvent.do?eventId=<%=myEvent.getEventId()%>"><%=myEvent.getTitle()%></a></u></td>
-                        <td width="200" class="register_label"><%= f.format(myEvent.getStartDate()) %></td>
+                        <td width="150" height="25px" class="home_eventheading"><u><a href="displayEvent.do?eventId=<%=myEvent.getEvent().getEventId()%>"><%=myEvent.getEvent().getTitle()%></a></u></td>
+                        <td width="200" class="register_label"><%= f.format(myEvent.getEvent().getStartDate()) %></td>
                         <td width="100" class="register_label">
-                        	150/300
+                        	<%=myEvent.getTicketsSold()%>/<%=myEvent.getTotalTickets()%>
                         </td>
                         </tr>
                       <tr>
                         <td colspan="3" class="home_eventwhen" height="30px"><hr/></td>
                       </tr>     
 <%
- 					}
-%>
+		}
+ 
+ %>                     
+                      
+<%
+	}
+	else
+	{
+%>                  
+     	<c:forEach var="error" items="${errors}">
+			<h4 style="color:red"> ${error} </h4>
+		</c:forEach>
+<%
+	}
+%>    
                       </table>
                     </td>
                   </tr>
