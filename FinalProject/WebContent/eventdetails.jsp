@@ -37,11 +37,13 @@ function MM_swapImage() { //v3.0
 </script>
 </head>
 
+
 <body onload="MM_preloadImages('images/event1.png','images/viewevents1.png','images/tickets1.png')">
 <jsp:include page="header.jsp" />
 
 
 <tr>
+
     <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td width="14%">&nbsp;</td>

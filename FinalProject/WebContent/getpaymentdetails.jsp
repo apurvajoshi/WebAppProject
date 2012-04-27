@@ -70,9 +70,11 @@
             }
         </script>
 </head>
-<body onload="MM_preloadImages('images/event1.png','images/viewevents1.png','images/tickets1.png')">
+<body onload="MM_preloadImages('images/home1.png','images/event1.png','images/viewevents1.png','images/tickets1.png')">
+
 
 <jsp:include page="header.jsp" />
+
 </table>
 
 <c:forEach var="error" items="${errors}">
