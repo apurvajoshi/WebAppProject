@@ -67,15 +67,16 @@ private FormBeanFactory<EventForm> formBeanFactory = FormBeanFactory.getInstance
        			oldEvent.setDescription(form.getDesc());
        			oldEvent.setLocation(form.getLocation());
        			oldEvent.setCity(form.getCity());
-       			oldEvent.setStartDate(new Date(form.getStartDate()));
-       			oldEvent.setStartTime(form.getStartTime());
-       			oldEvent.setEndDate(new Date(form.getEndDate()));
-       			oldEvent.setEndTime(form.getEndTime());
-       			oldEvent.setCategory(form.getCategory());
-       			oldEvent.setPrivacy(form.getPrivacy());
-       			oldEvent.setOrganization(form.getHost());
-       			String privacy = request.getParameter("privacy");
-       			oldEvent.setPrivacy(privacy);
+       			Date temp1 = new Date(form.getStartDate());
+       			temp1.setHours(Integer.parseInt(form.getStartHour()));
+       			temp1.setMinutes(Integer.parseInt(form.getStartMins()));
+       			oldEvent.setStartDate(temp1);     
+       			Date temp2 = new Date(form.getStartDate());
+       			temp2.setHours(Integer.parseInt(form.getEndHour()));
+       			temp2.setMinutes(Integer.parseInt(form.getEndMins()));
+       			oldEvent.setEndDate(temp2);    			
+       			oldEvent.setCategory(form.getCategory());       			
+       			oldEvent.setOrganization(form.getHost());       			
        			oldEvent.setInsertTime(new Date());
        			       			       		
 				eventDAO.update(oldEvent);

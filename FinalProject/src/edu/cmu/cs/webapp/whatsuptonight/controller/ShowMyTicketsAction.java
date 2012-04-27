@@ -80,7 +80,7 @@ public class ShowMyTicketsAction extends Action {
         	    myTickets.setAmount(ticket.getTicketPrice() * map.get(key));
         	    myTicketsList.add(myTickets);
         	}
-        	
+        	        	
             request.setAttribute("myTicketsList",myTicketsList);    
     		return "mytickets.jsp";       
 

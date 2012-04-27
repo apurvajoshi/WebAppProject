@@ -1,3 +1,4 @@
+
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.Format"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -42,39 +43,16 @@ function MM_swapImage() { //v3.0
 </head>
 
 <body onload="MM_preloadImages('images/event1.png','images/viewevents1.png','images/tickets1.png')">
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td height="50" valign="middle" bgcolor="#3B5998"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td width="14%">&nbsp;</td>
-        <td width="72%" class="banner" valign="middle"><span style="color:#FFF">WatzUpTonight</span></td>
-        <td width="14%">&nbsp;</td>
-      </tr>
-    </table></td>
-  </tr>
-  <tr>
-    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td width="14%" bgcolor="#3B5998">&nbsp;</td>
-        <td width="72%" height="35" bgcolor="#3B5998"><table width="360" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td><a href="event.jsp" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image1','','images/event1.png',1)"><img src="images/event.png" name="Image1" width="120" height="35" border="0" id="Image1" /></a></td>
-            <td><a href="showMyEvents.do" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image2','','images/viewevents1.png',1)"><img src="images/viewevents.png" name="Image2" width="120" height="35" border="0" id="Image2" /></a></td>
-            <td><a href="showMyTickets.do" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image3','','images/tickets1.png',1)"><img src="images/tickets.png" name="Image3" width="120" height="35" border="0" id="Image3" /></a></td>
-          </tr>
-        </table></td>
-        <td width="14%" bgcolor="#3B5998">&nbsp;</td>
-      </tr>
-    </table></td>
-  </tr>
-  <tr>
+<jsp:include page="header.jsp" />
+
+<tr>
     <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td width="14%">&nbsp;</td>
         <td width="72%"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td class="discover">
-            <br/>
+            <br/>			
 			<jsp:include page="error-list.jsp" />
             
             <br/>Discover Events at Pittsburgh</td>
@@ -92,23 +70,32 @@ function MM_swapImage() { //v3.0
             	<table width="450px" border="0" cellspacing="0" cellpadding="0">
             	            	
             	<% 
-            		Event[] eventsList = (Event[])request.getAttribute("eventsList");
 	            	Format f1 = new SimpleDateFormat("MMM d, yyyy HH:mm");
 	    			Format f2 = new SimpleDateFormat("EEE");
 	    			Format f3 = new SimpleDateFormat("MMM d");
-            		for(int i=0; i<eventsList.length; i++) 
-            		{
-            			
+	    			
+            		Event[] eventsList = (Event[])request.getAttribute("eventsList");
+
+            		if(eventsList != null) 
+   		     		{
+            			if(eventsList.length > 0)
+            			{
+		            		for(int i=0; i<eventsList.length; i++) 
+		            		{	
             	%>
                   <tr>
                     <td>
                     	<table width="610px" border="0" cellspacing="0" cellpadding="0">
                           <tr>
-                          	<td width="110" rowspan="3" class="home_eventheading"><input width="90" height="35" type="image" name="imageField" id="imageField" src="image.do?eventId=<%= eventsList[i].getEventId() %>" /></td>
+                          	<td width="110" rowspan="4" class="home_eventheading"><input width="90" height="35" type="image" name="imageField" id="imageField" src="image.do?eventId=<%= eventsList[i].getEventId() %>" /></td>
                             <td width="350" height="25px" class="home_eventheading"><a href="userEventRegistration.do?eventId=<%= eventsList[i].getEventId()%>"><%= eventsList[i].getTitle() %></a></td>
                             <td width="150" class="home_eventdate"><%= f2.format(eventsList[i].getStartDate()) %>, <%= f3.format(eventsList[i].getStartDate()) %></td>
                           </tr>
                           <tr>                          	
+                            <td class="home_eventwhen" height="18px"><%= eventsList[i].getCategory() %></td>
+                            <td></td>
+                          </tr> 
+                          <tr>                    	
                             <td class="home_eventwhen" height="18px"><b>When:</b>  <%=f1.format(eventsList[i].getStartDate())%></td>
                             <td></td>
                           </tr>  
@@ -123,6 +110,8 @@ function MM_swapImage() { //v3.0
             		</td>
            		</tr>
            		<%
+		            		}
+	            		}
             		}
            		%>
                 

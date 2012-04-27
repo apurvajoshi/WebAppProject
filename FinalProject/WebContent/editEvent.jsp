@@ -1,3 +1,8 @@
+<%@page import="edu.cmu.cs.webapp.whatsuptonight.databean.Event"%>
+<%@page import="edu.cmu.cs.webapp.whatsuptonight.databean.Ticket"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.Format"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -35,6 +40,7 @@ $(function() {
 	});
 });
 	</script>
+	
 </head>
 
 <body onload="MM_preloadImages('images/event1.png','images/viewevents1.png','images/tickets1.png')">
@@ -53,7 +59,11 @@ $(function() {
   </tr>
   <tr>
     <td>
-    <form method="post" action="updateEvent.do?eventId=${event.eventId}" enctype="multipart/form-data">
+    	<% 
+    		Event event = (Event)request.getAttribute("event");
+    		Ticket ticket = (Ticket)request.getAttribute("ticket");
+    	%>
+    <form method="post" action="updateEvent.do?eventId=<%= event.getEventId() %>" enctype="multipart/form-data">
     	<table width="100%" border="0" cellspacing="0" cellpadding="0">
       	<tr>
         	<td width="14%">&nbsp;</td>
@@ -69,11 +79,11 @@ $(function() {
 							<table width="600px" border="0" cellspacing="0" cellpadding="0">
 							  <tr>
 							    <td width="125" class="register_label">Event Title :</td>
-							    <td width="475" colspan="3"><input type="text" name="title" value="${event.title}" /></td>
+							    <td width="475" colspan="3"><input type="text" name="title" value="<%= event.getTitle() %>" /></td>
 							  </tr>
 							  <tr>
 							    <td class="register_label">Event Details :</td>
-							    <td colspan="3"><textarea name="desc" rows="5" >${event.description}</textarea></td>
+							    <td colspan="3"><textarea name="desc" rows="5" ><%= event.getDescription()%></textarea></td>
 							  </tr>
 							  <tr>
 							    <td class="register_label">Upload Event Picture:</td>
@@ -85,11 +95,11 @@ $(function() {
 							  </tr>
 							  <tr>
 							    <td class="register_label">Location :</td>
-							    <td colspan="3"><input type="text" name="location" value="${event.location}" /></td>
+							    <td colspan="3"><input type="text" name="location" value="<%= event.getLocation()%>" /></td>
 							  </tr>
 							  <tr>
 							    <td class="register_label">City :</td>
-							    <td colspan="3"><input type="text" name="city" value="${event.city}" /></td>
+							    <td colspan="3"><input type="text" name="city" value="<%= event.getCity() %>" /></td>
 							  </tr>
 							  <tr>
 							    <td class="register_label">&nbsp;</td>
@@ -101,55 +111,95 @@ $(function() {
 							  </tr>
 							  <tr>
 							    <td class="register_label">Event Start Date :</td>
-							    <td><input type="text" name="startDate" id="startdatepicker" value="${event.startDate}" /></td>
+							    <% 
+							    	Format f1 = new SimpleDateFormat("mm/dd/yyyy");
+							    %>
+							    <td><input type="text" name="startDate" id="startdatepicker" value="<%= f1.format(event.getStartDate()) %>" /></td>
 							    <td><span class="register_label">Event End Date :</span></td>
-							    <td><input type="text" name="startTime" value="${event.startTime}" /></td>
+							    <td>							    	
+								    <select name="startHour">
+								    <%						
+								    	int stHr = event.getStartDate().getHours();
+								    	for(int j=0; j<23; j++) {
+								    		if(stHr == j) {
+								    %>
+								      			<option selected="selected" value="<%=j%>"><%=j %></option> 
+								    <% 
+								    		} else {
+								    %>
+								    			<option value="<%=j%>"><%=j %></option>
+								    <% 
+								    		}
+								    	}
+								    %> 
+								    	
+								   
+								    </select>
+								    &nbsp;
+								    <select name="startMins" value="${form.startMins}">
+								    <%
+								    	int stMin = event.getStartDate().getMinutes();
+								    	for(int j=0; j<60; j+=15) {
+								    		if(stMin == j) {
+								    %>
+								      		<option selected="selected" value="<%=j%>"><%=j %></option> 
+								    <% 
+								    		} else {
+								    %>
+								    		<option value="<%=j%>"><%=j %></option>
+								    <% 
+								    		}
+								    	}
+								    %> 
+								    </select>
+								
+							    
+							    </td>
 							  </tr>
 							  <tr>
 							    <td class="register_label">Event Start Time :</td>
-							    <td><input type="text" name="endDate" id="enddatepicker" value="${event.endDate}" /></td>
+							    <td><input type="text" name="endDate" id="enddatepicker" value="<%= f1.format(event.getEndDate()) %>" /></td>
 							    <td><span class="register_label">Event End Time :</span></td>
-							    <td><input type="text" name="endTime" value="${event.endTime}" /></td>
+							    <td>
+							    	<select name="endHour" value="${form.endHour}">
+								    <%
+								    	int edHr = event.getEndDate().getHours();
+								    	for(int j=0; j<23; j++) {
+								    		if(edHr == j) {
+								    %>
+								      		<option selected="selected" value="<%=j%>"><%=j %></option> 
+								    <% 
+								    		} else {
+								    %>
+								    		<option value="<%=j%>"><%=j %></option>
+								    <% 
+								    		}
+								    	}
+								    %>  
+								    </select>
+								    &nbsp;
+								    <select name="endMins" value="${form.endMins}">
+								    <%
+								    	int edMin = event.getEndDate().getMinutes();
+								    	for(int j=0; j<60; j+=15) {
+								    		if(edMin == j) {
+								    %>
+								      		<option selected="selected" value="<%=j%>"><%=j %></option> 
+								     <% 
+								    		} else {
+								    %>
+								    		<option value="<%=j%>"><%=j %></option>
+								    <% 
+								    		}
+								    	}
+								    %>  
+								    </select>
+							    </td>
 							  </tr>
 							  <tr>
 							    <td>&nbsp;</td>
 							    <td colspan="3">&nbsp;</td>
-							  </tr>
-							  <tr>
-							    <td class="register_label">Privacy :</td>
-							    <td colspan="3">
-							      <%
-							      		String str = request.getAttribute("event").toString();
-							      		if(str.equals("Public")) {
-							      	%>
-							      <p>							      	
-							        <label class="register_label">
-							          <input type="radio" name="privacy" checked="checked" value="Public" />
-							          Public</label>
-							        <br />
-							        <label class="register_label">
-							          <input type="radio" name="privacy" value="Private"/>
-							          Private</label>
-							        <br />
-							        </p>
-							        <%
-							      		} else { 
-							      	%>
-						      			 <p>							      	
-								        <label class="register_label">
-								          <input type="radio" name="privacy" value="Public" />
-								          Public</label>
-								        <br />
-								        <label class="register_label">
-								          <input type="radio" name="privacy" checked="checked" value="Private"/>
-								          Private</label>
-								        <br />
-								        </p>							      		
-							        <% 
-							      		}
-							        %>
-							      </td>
-							  </tr>
+							  </tr>							  
 							  <tr>
 							    <td>&nbsp;</td>
 							    <td colspan="3">&nbsp;</td>
@@ -166,9 +216,8 @@ $(function() {
 							  </tr>
 							  <tr>
 							    <td class="register_label">Host :</td>
-							    <td colspan="3"><input type="text" name="host" value="${event.organization}" /></td>
-							  </tr>
-							  <tr>
+							    <td colspan="3"><input type="text" name="host" value="<%= event.getOrganization() %>" /></td>
+							  </tr>							  
 							  <tr>
 							    <td>&nbsp;</td>
 							    <td colspan="3">&nbsp;</td>
@@ -193,9 +242,9 @@ $(function() {
 							        <td class="register_label">Per Ticket Price</td>
 							      </tr>
 							      <tr>
-							        <td><input type="text" name="ticketName" value="${ticket.ticketName}" /></td>
-							        <td><input type="text" width="60px" name="ticketQty" value="${ticket.ticketQty}" /></td>
-							        <td><input type="text" width="60px" name="ticketPrice" value="${ticket.ticketPrice}" /></td>
+							        <td><input type="text" name="ticketName" value="<%= ticket.getTicketName() %>" /></td>
+							        <td><input type="text" width="60px" name="ticketQty" value="<%= ticket.getTicketQty() %>" /></td>
+							        <td><input type="text" width="60px" name="ticketPrice" value="<%= ticket.getTicketPrice()%>" /></td>
 							      </tr>
 							      <tr>
 							        <td>&nbsp;</td>
