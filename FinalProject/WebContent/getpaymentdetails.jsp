@@ -4,7 +4,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title> Buy tickets </title>
+<title>WatzUpTonight</title>
 <style type="text/css">
 @import url("stylesheet.css");
 </style>
@@ -13,8 +13,13 @@
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
         <script type="text/javascript">
             // this identifies your website in the createToken call below
-            Stripe.setPublishableKey('pk_XGfMNBAnTGOnoGSXzFGcbaMACeHGq');
+          	
+            /* Test publishable key */
+            //Stripe.setPublishableKey('pk_XGfMNBAnTGOnoGSXzFGcbaMACeHGq');
 
+			/* Live publishable key */
+            Stripe.setPublishableKey('pk_VSo8axD0CXcz9Ws3DhpMTmrw4rFOx');
+            
             function stripeResponseHandler(status, response) {
                 if (response.error) {
                     // re-enable the submit button
