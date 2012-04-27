@@ -181,10 +181,14 @@ $(function() {
 							  <tr>
 							    <td class="register_label">Category :</td>
 							    <td colspan="3"><select name="category" value="${form.category}">
-							      <option value="Sports">Sports</option>
 							      <option value="Business">Business</option>
-							      <option value="Entertainment">Entertainment</option>
+							      <option value="Technology">Technology</option>
+							      <option value="Art & Music">Art & Music</option>
 							      <option value="Food">Food</option>
+							      <option value="Travel">Travel</option>
+							      <option value="Sports">Sports</option>
+							      <option value="Entertainment">Entertainment</option>
+							      
 							    </select>
 							    </td>
 							  </tr>

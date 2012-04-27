@@ -11,8 +11,10 @@ import org.mybeans.form.FormBeanException;
 import org.mybeans.form.FormBeanFactory;
 
 import edu.cmu.cs.webapp.whatsuptonight.databean.User;
+import edu.cmu.cs.webapp.whatsuptonight.databean.UserCategory;
 import edu.cmu.cs.webapp.whatsuptonight.formbean.RegisterForm;
 import edu.cmu.cs.webapp.whatsuptonight.model.Model;
+import edu.cmu.cs.webapp.whatsuptonight.model.UserCategoryDAO;
 import edu.cmu.cs.webapp.whatsuptonight.model.UserDAO;
 
 
@@ -20,9 +22,11 @@ public class RegisterAction extends Action {
 	private FormBeanFactory<RegisterForm> formBeanFactory = FormBeanFactory.getInstance(RegisterForm.class);
 	
 	private UserDAO userDAO;
+	private UserCategoryDAO ucDAO;
 
 	public RegisterAction(Model model) {
 		userDAO = model.getUserDAO();
+		ucDAO = model.getUserCategoryDAO();
 	}
 
 	public String getName() { return "register.do"; }
@@ -65,8 +69,22 @@ public class RegisterAction extends Action {
         	    return "register.jsp";	
        		}
    				
-       		userDAO.createAutoIncrement(newUser);	       			
+       		int userId = userDAO.insertUser(newUser);
+       		
+       		ArrayList<String> userCategoryList = new ArrayList<String>();
+       		String[] selCat = request.getParameterValues("category");
+       		if (selCat != null && selCat.length != 0) {
+       			for(int j=0; j<selCat.length; j++) {
+       				UserCategory cat = new UserCategory();
+       				cat.setUserId(userId);
+       				cat.setCategoryName(selCat[j]);
+       				ucDAO.createAutoIncrement(cat);
+       				userCategoryList.add(cat.getCategoryName());
+       			}       			
+       		}	
+       		
        		session.setAttribute("user", newUser);
+       		session.setAttribute("userCategoryList", userCategoryList);
        			
        		return "home.do";	        
         } catch (RollbackException e) {        	

@@ -6,7 +6,7 @@ import org.genericdao.PrimaryKey;
 public class UserCategory {
 	private int ucId;
 	private int userId;
-	private int categoryName;
+	private String categoryName;
 	
 	public int getUcId() {
 		return ucId;
@@ -20,10 +20,10 @@ public class UserCategory {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	public int getCategoryName() {
+	public String getCategoryName() {
 		return categoryName;
 	}
-	public void setCategoryName(int categoryName) {
+	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
 }
