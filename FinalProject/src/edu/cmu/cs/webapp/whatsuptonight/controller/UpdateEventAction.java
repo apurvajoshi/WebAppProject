@@ -2,6 +2,7 @@ package edu.cmu.cs.webapp.whatsuptonight.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,26 +16,32 @@ import org.mybeans.form.FormBeanFactory;
 import edu.cmu.cs.webapp.whatsuptonight.databean.Event;
 import edu.cmu.cs.webapp.whatsuptonight.databean.Photo;
 import edu.cmu.cs.webapp.whatsuptonight.databean.Ticket;
+import edu.cmu.cs.webapp.whatsuptonight.databean.User;
+import edu.cmu.cs.webapp.whatsuptonight.databean.UserEventRegistration;
 import edu.cmu.cs.webapp.whatsuptonight.formbean.EventForm;
 import edu.cmu.cs.webapp.whatsuptonight.model.EventDAO;
 import edu.cmu.cs.webapp.whatsuptonight.model.Model;
 import edu.cmu.cs.webapp.whatsuptonight.model.PhotoDAO;
 import edu.cmu.cs.webapp.whatsuptonight.model.TicketDAO;
+import edu.cmu.cs.webapp.whatsuptonight.model.UserDAO;
 import edu.cmu.cs.webapp.whatsuptonight.model.UserEventCreationDAO;
+import edu.cmu.cs.webapp.whatsuptonight.model.UserEventRegistrationDAO;
 
 public class UpdateEventAction extends Action{
 private FormBeanFactory<EventForm> formBeanFactory = FormBeanFactory.getInstance(EventForm.class);
 	
 	private EventDAO eventDAO;
 	private TicketDAO ticketDAO;
-	private UserEventCreationDAO ueDAO;
 	private PhotoDAO photoDAO;
+	private UserEventRegistrationDAO userEventRegDAO;
+	private UserDAO userDAO;
 
 	public UpdateEventAction(Model model) {
 		eventDAO = model.getEventDAO();
 		ticketDAO = model.getTicketDAO();
-		ueDAO = model.getUserEventCreationDAO();
 		photoDAO = model.getPhotoDAO();
+		userDAO = model.getUserDAO();
+		userEventRegDAO = model.getUserEventRegistrationDAO();
 	}
 
 	public String getName() { return "updateEvent.do"; }
@@ -102,30 +109,57 @@ private FormBeanFactory<EventForm> formBeanFactory = FormBeanFactory.getInstance
 	       		ticketDAO.update(oldTicket);
 	       			       		
 	       		/* Send email to all users who are registered for the event */
-	       		
-	       		
-	       		/*int userId = ((User)session.getAttribute("user")).getUserId();
-	       			
-	       		if(oldEventId != -1) {
-	       			UserEventCreation createEvent = new UserEventCreation();
-	       			createEvent.setUserId(userId);
-	       			createEvent.setEventId(oldEventId);
-	       			
-	       			ueDAO.createAutoIncrement(createEvent);
-	       			
-	       			return "showMyEvents.do";
-	       		}*/
-	       		
+	       		sendEmailToRegisteredUsers(oldEvent, oldTicketId, errors);
 	       		return "showMyEvents.do";
        		} 
 	        
 	        return "event.jsp";
         } catch (RollbackException e) {        	
         	errors.add(e.getMessage());
-        	return "error.jsp";
+        	return "event.jsp";
         } catch (FormBeanException e) {
         	errors.add(e.getMessage());
-        	return "error.jsp";
+        	return "event.jsp";
         }
     }
+    
+    public void sendEmailToRegisteredUsers(Event event, int ticketTypeId, List<String> errors)
+    {
+    	System.out.println("Ticket type id " + ticketTypeId);
+    	try {
+			UserEventRegistration[] userEventsReg = userEventRegDAO.getTicketsByTicketTypeId(ticketTypeId);
+        	HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+
+			for(UserEventRegistration userEventReg : userEventsReg)
+			{	
+				if(map.get(userEventReg.getUserId()) == null)
+				{
+					int userId = userEventReg.getUserId();
+					//Send email
+					User user = userDAO.getUserByUserId(userId);
+					System.out.println("Email id : " + user.getEmailId() );
+					MailSender mailSender=new MailSender(user.getEmailId(),"Your registered event '" + event.getTitle() +"' got updated", createEmailContent(event));
+					map.put(userEventReg.getUserId(), 1);
+				}
+			}
+		} catch (RollbackException e) {
+			errors.add(e.getMessage());
+		}
+    }
+    
+    public String createEmailContent(Event event)
+    {
+    	String ret;
+    	ret = "Event Title : " + event.getTitle() + "\n" +
+    		  "Description : " + event.getDescription() + "\n" +
+    		  "Location : " + event.getLocation() + "\n" +
+    		  "City : " + event.getCity() + "\n" +
+    		  "Start date : " + event.getStartDate() + "\n" +
+    		  "End date : " + event.getEndDate() + "\n" + 
+    		  "Host : " + event.getOrganization() + "\n";
+    	
+    	return ret;
+    }
+    
+    
 }

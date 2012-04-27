@@ -221,7 +221,7 @@ public class EventForm extends FormBean{
         if(flag == 0)
         	errors.add("Category is required.");
         	
-        if(action.equals("Create event")) {
+        if(action.equals("Create Event")) {
 	        if (file == null || file.getFileName().length() == 0) {
 				errors.add("You must provide a file");
 				return errors;
@@ -231,8 +231,8 @@ public class EventForm extends FormBean{
 				errors.add("Zero length file");
 			}
 			
-			if (file.getBytes().length > 102400) {
-				errors.add("Image file size should be less than 100KB.");
+			if (file.getBytes().length > (1024 * 102400)) {
+				errors.add("Image file size should be less than 100MB.");
 			}
         }
         

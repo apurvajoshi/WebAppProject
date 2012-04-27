@@ -80,7 +80,10 @@ $(function() {
         	<td width="72%">
         		<table width="100%" border="0" cellspacing="0" cellpadding="0">
           			<tr>
-			            <td class="discover"><br/>Edit Event<br/><br/>
+			            <td class="discover"><br/>Edit Event<br/>
+			            <span style="font-size:12px">All users registered for your event will be sent an email when you update event*</span> 
+			            <br/>
+			            <br/>
 			                1. Edit your event details!!!
 			            </td>
           			</tr>
