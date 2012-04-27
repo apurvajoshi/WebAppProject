@@ -35,25 +35,9 @@ $(function() {
 	});
 });
 	</script>
-	<script>
-	function selectDropDownList(num1, num2, num3, num4)
-	{
-		var selObj1 = document.getElementById('startHour');
-		selObj1.selectedIndex = num1;
-			
-		var selObj2 = document.getElementById('startMins');
-		selObj2.selectedIndex = num2;
-		
-		var selObj3 = document.getElementById('endHour');
-		selObj3.selectedIndex = num3;
-		
-		var selObj4 = document.getElementById('endMins');
-		selObj4.selectedIndex = num4;
-	}	
-	</script>
 </head>
 
-<body onload="MM_preloadImages('images/event1.png','images/viewevents1.png','images/tickets1.png'); selectDropDownList(${form.startHour},${form.startMins},${form.endHour},${form.endMins})">
+<body onload="MM_preloadImages('images/event1.png','images/viewevents1.png','images/tickets1.png')">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td height="50" valign="middle" bgcolor="#3B5998"><table width="100%" border="0" cellspacing="0" cellpadding="0">

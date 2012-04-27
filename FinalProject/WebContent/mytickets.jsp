@@ -1,5 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+<%@page import="java.text.Format"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="edu.cmu.cs.webapp.whatsuptonight.databean.MyTickets"%>
 <%@page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -72,7 +74,12 @@ function MM_swapImage() { //v3.0
         <td width="14%">&nbsp;</td>
         <td width="72%"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           
-          
+    
+ <%
+	ArrayList myTicketsList = (ArrayList)request.getAttribute("myTicketsList");
+	if (myTicketsList != null) 
+	{
+%>        
           <tr>
             <td class="discover">
             <br/>
@@ -81,45 +88,39 @@ function MM_swapImage() { //v3.0
           <tr>
             <td class="discover">&nbsp;</td>
           </tr>
-          
-<%
-	ArrayList myTicketsList = (ArrayList)request.getAttribute("myTicketsList");
-	if (myTicketsList != null) 
-	{
-%>        
 
 		<tr>
             <td class="discover">
-            <table width="550px" border="0" cellspacing="0" cellpadding="0">
+            <table width="600px" border="0" cellspacing="5px" cellpadding="0">
               <tr>
                 <td width="150px" class="home_eventheading">Event Name</td>
-                <td width="100px" class="home_eventheading">Date</td>
-                <td width="100px" class="home_eventheading">Tickets Quantity</td>
-                <td width="100px" class="home_eventheading">Total Amount</td>
+                <td width="200px" class="home_eventheading">Date</td>
+                <td width="120px" class="home_eventheading" align="right">Tickets Quantity</td>
+                <td width="100px" class="home_eventheading" align="right">Total Amount</td>
               </tr>
             </table>
             </td>
           </tr>
-          
             <tr>
             <td><br/>
-              <table width="550px" border="0" cellspacing="0" cellpadding="0">
+              <!-- table width="550px" border="0" cellspacing="2px" cellpadding="0">
                 <tr>
-                  <td>
-                    <table width="550px" border="0" cellspacing="0" cellpadding="0">  
+                  <td-->
+                    <table width="600px" border="0" cellspacing="5px" cellpadding="0">  
 <%
+		Format f = new SimpleDateFormat("EEE, d MMM yyyy HH:mm");
 		for (int i = 0; i < myTicketsList.size(); i++) 
 		{
 			MyTickets myTicket = (MyTickets)myTicketsList.get(i);
 %>                              
                       <tr>
-                        <td width="150" height="25px" class="home_eventheading"><a href="printTicket.do?id=<%=myTicket.getEventId()%>">
+                        <td width="150px" height="25px" class="home_eventheading"><a href="printTicket.do?id=<%=myTicket.getEventId()%>">
                         <%=myTicket.getTitle() %></a></td>
-                        <td width="100" class="register_label"><%=myTicket.getDate() %></td>
-                        <td width="100" class="register_label">
+                        <td width="200px" class="register_label"><%=f.format(myTicket.getDate())%></td>
+                        <td width="120px" class="register_label" align="right">
                         	<%=myTicket.getTicketQty() %>
                         </td>
-                        <td width="100" class="register_label">
+                        <td width="100px" class="register_label" align="right">
                         	$<%=myTicket.getAmount() %>
                         </td>
                         </tr>
@@ -146,19 +147,7 @@ function MM_swapImage() { //v3.0
                       </table>
                     </td>
                   </tr>
-                 
-                
-               
-                
-                </table>
-              
-              </td>
-          </tr>
-          
-          
-          
-          
-        </table></td>
+		 </table></td>
         <td>&nbsp;</td>
       </tr>
     </table></td>

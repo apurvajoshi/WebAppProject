@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.Format"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.text.DateFormatSymbols"%>
 <%@page import="java.util.*"%>
@@ -90,36 +92,36 @@ function MM_swapImage() { //v3.0
             	<table width="450px" border="0" cellspacing="0" cellpadding="0">
             	            	
             	<% 
+	            	Format f1 = new SimpleDateFormat("MMM d, yyyy HH:mm");
+	    			Format f2 = new SimpleDateFormat("EEE");
+	    			Format f3 = new SimpleDateFormat("MMM d");
+	    			
             		Event[] eventsList = (Event[])request.getAttribute("eventsList");
             		if(eventsList != null) 
-            		{
+   		     		{
             			if(eventsList.length > 0)
             			{
 		            		for(int i=0; i<eventsList.length; i++) 
-		            		{
-		                  		Date stDate = new Date(eventsList[i].getStartDate().toString()); 
-		                  		GregorianCalendar stCal = new GregorianCalendar(stDate.getYear(), stDate.getMonth(), stDate.getDay());
-		                  		String[] shortMonths = new DateFormatSymbols().getShortMonths();
-		                  		String[] shortWeekdays = new DateFormatSymbols().getShortWeekdays();                  	
+		            		{	
             	%>
                   <tr>
                     <td>
-                    	<table width="450px" border="0" cellspacing="0" cellpadding="0">
+                    	<table width="610px" border="0" cellspacing="0" cellpadding="0">
                           <tr>
-                          	<td width="110" rowspan="3" class="home_eventheading"><input width="90" height="35" type="image" name="imageField" id="imageField" src="image.do?eventId=<%= eventsList[i].getEventId() %>" /></td>
+                          	<td width="110" rowspan="4" class="home_eventheading"><input width="90" height="35" type="image" name="imageField" id="imageField" src="image.do?eventId=<%= eventsList[i].getEventId() %>" /></td>
                             <td width="350" height="25px" class="home_eventheading"><a href="userEventRegistration.do?eventId=<%= eventsList[i].getEventId()%>"><%= eventsList[i].getTitle() %></a></td>
-                            <td width="100" class="home_eventdate"><%= shortWeekdays[stCal.get(Calendar.DAY_OF_WEEK)] %>, <%= shortMonths[stCal.get(Calendar.MONTH)]%> <%= stCal.get(Calendar.DAY_OF_MONTH) %></td>
+                            <td width="150" class="home_eventdate"><%= f2.format(eventsList[i].getStartDate()) %>, <%= f3.format(eventsList[i].getStartDate()) %></td>
                           </tr>
                           <tr>                          	
                             <td class="home_eventwhen" height="18px"><%= eventsList[i].getCategory() %></td>
                             <td></td>
                           </tr> 
-                          <tr>                          	
-                            <td class="home_eventwhen" height="18px"><b>When:</b><%= shortMonths[stCal.get(Calendar.MONTH)]%> <%= stCal.get(Calendar.DAY_OF_MONTH) %>, <%= shortWeekdays[stCal.get(Calendar.DAY_OF_WEEK)] %>, <%= eventsList[i].getStartTime() %> </td>
+                          <tr>                    	
+                            <td class="home_eventwhen" height="18px"><b>When:</b>  <%=f1.format(eventsList[i].getStartDate())%></td>
                             <td></td>
                           </tr>  
                           <tr>
-                            <td class="home_eventwhen"><b>Where:</b>	<%= eventsList[i].getLocation() %></td>
+                            <td class="home_eventwhen"><b>Where:</b>  <%= eventsList[i].getLocation() %></td>
                             <td>&nbsp;</td>
                           </tr>
                           <tr>
