@@ -89,7 +89,7 @@ $(function() {
 							  </tr>
 							  <tr>
 							    <td class="register_label">Event Details :</td>
-							    <td colspan="3"><textarea name="desc" rows="5" value="${form.desc}"></textarea></td>
+							    <td colspan="3"><textarea name="desc" rows="5" >${form.desc}</textarea></td>
 							  </tr>
 							  <tr>
 							    <td class="register_label">Upload Event Picture:</td>

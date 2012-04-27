@@ -136,7 +136,7 @@ public class EventForm extends FormBean{
         List<String> errors = new ArrayList<String>();
 
         if (title == null || title.length() == 0) errors.add("Title is required");
-        if (desc == null || desc.length() == 0) errors.add("Desc is required");
+        if (desc == null || desc.length() == 0) errors.add("Event Details is required");
         if (location == null || location.length() == 0) errors.add("Location is required");
         if (city == null || city.length() == 0) errors.add("City is required");        
         if (startDate == null || startDate.toString().length() == 0) errors.add("Start Date is required");
@@ -171,6 +171,17 @@ public class EventForm extends FormBean{
         	errors.add("Proper End time is required.");
         if((iendMins < 0) && (iendMins > 59))
         	errors.add("Proper End time is required.");
+        
+        Date d1 = new Date(startDate);
+        d1.setHours(istartHour);
+        d1.setMinutes(istartMins);
+        
+        Date d2 = new Date(endDate);
+        d2.setHours(iendHour);
+        d2.setMinutes(iendMins);
+        
+        if(d2.before(d1))
+        	errors.add("Event End Time should be after Event Start Time.");
         
             
         try {
