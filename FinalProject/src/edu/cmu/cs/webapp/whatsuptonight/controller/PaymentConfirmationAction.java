@@ -42,16 +42,8 @@ public class PaymentConfirmationAction extends Action {
 	        payment.setEmailId(user.getEmailId());
         	
 	        paymentDAO.createAutoIncrement(payment);
-	        List<String> msgs = new ArrayList<String>();
-	        msgs.add("Payment Successful!");
-	        request.setAttribute("msgs",msgs);
-	       
-	        
-	        /* Add tickets to the user event registration page */
-	        
-	        
-	        
-			return "showTickets.do";
+	        request.setAttribute("msg","Payment Successful!");	        
+	    	return "showMyTickets.do";
         } catch (RollbackException e) {
         	errors.add(e.getMessage());
         	return "welcome.jsp";

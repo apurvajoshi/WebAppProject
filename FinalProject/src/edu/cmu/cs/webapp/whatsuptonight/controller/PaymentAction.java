@@ -102,7 +102,7 @@ private FormBeanFactory<PaymentForm> formBeanFactory = FormBeanFactory.getInstan
 	        session.setAttribute("eventId", null);
 	        session.setAttribute("quantity", null);
 	        
-			return "showMyTickets.do";
+			return "paymentConfirmation.do";
         } catch (NumberFormatException e) {
         	errors.add(e.getMessage());
         	return "getpaymentdetails.jsp";
