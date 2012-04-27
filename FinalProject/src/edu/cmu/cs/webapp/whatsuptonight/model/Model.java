@@ -6,6 +6,8 @@ import javax.servlet.ServletException;
 import org.genericdao.ConnectionPool;
 import org.genericdao.DAOException;
 
+import edu.cmu.cs.webapp.whatsuptonight.databean.UserCategory;
+
 public class Model {
 	
 	private UserDAO userDAO;
@@ -15,6 +17,7 @@ public class Model {
 	private PaymentDAO paymentDAO;
 	private UserEventRegistrationDAO userEventRegistrationDAO;
 	private PhotoDAO photoDAO;
+	private UserCategoryDAO ucDAO;
 
 	public Model(ServletConfig config) throws ServletException {
 		try {
@@ -30,6 +33,7 @@ public class Model {
 			paymentDAO = new PaymentDAO("payment_details", pool);
 			userEventRegistrationDAO = new UserEventRegistrationDAO("user_event_registration", pool);
 			photoDAO = new PhotoDAO("photos", pool);
+			ucDAO = new UserCategoryDAO("user_category", pool);
 			
 		} catch (DAOException e) {
 			throw new ServletException(e);
@@ -43,4 +47,5 @@ public class Model {
 	public PaymentDAO getPaymentDAO() { return paymentDAO; }
 	public UserEventRegistrationDAO getUserEventRegistrationDAO() { return userEventRegistrationDAO; }
 	public PhotoDAO getPhotoDAO() { return photoDAO; }
+	public UserCategoryDAO getUserCategoryDAO() { return ucDAO; }
 }
