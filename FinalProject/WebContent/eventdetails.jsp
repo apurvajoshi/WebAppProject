@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- TemplateBeginEditable name="doctitle" -->
-<title>Untitled Document</title>
+<title>WatzUpTonight</title>
 <!-- TemplateEndEditable -->
 <!-- TemplateBeginEditable name="head" -->
 <!-- TemplateEndEditable -->
@@ -70,7 +70,7 @@ function MM_swapImage() { //v3.0
                     <form method="post" id="form1" action="getCardDetails.do">        
                     	<table width="400px" border="0" cellspacing="0" cellpadding="0">
 						  <tr>
-					    	<td class="home_eventwhen">Ticket Type</td>
+					    	<td class="home_eventwhen">Ticket Class</td>
 					    	<td class="home_eventwhen">Price</td>
 					    	<td class="home_eventwhen">Quantity</td>
 					  	  </tr>
@@ -114,6 +114,14 @@ function MM_swapImage() { //v3.0
 					    ${event.description} <br/><br/>
 					When: ${event.startDate}<br/>
 					Where: ${event.location} ${event.city}<br/>					    
+					    </td>
+					  </tr>
+					  <tr>
+					    <td class="home_eventdate"></td>
+					  </tr>
+					  <tr>
+					    <td class="home_eventdate"><br/>
+					    <input width="500" height="400" type="image" name="imageField" id="imageField" src="image.do?eventId=${event.eventId}" />
 					    </td>
 					  </tr>
 					</table>

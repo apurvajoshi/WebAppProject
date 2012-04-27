@@ -10,7 +10,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- TemplateBeginEditable name="doctitle" -->
-<title>Untitled Document</title>
+<title>WatzUpTonight</title>
 <!-- TemplateEndEditable -->
 <!-- TemplateBeginEditable name="head" -->
 <!-- TemplateEndEditable -->
@@ -57,13 +57,13 @@ function MM_swapImage() { //v3.0
             <br/>			
 			<jsp:include page="error-list.jsp" />
             
-            <br/>Discover Events at Pittsburgh</td>
+            <br/>Discover Events!!</td>
           </tr>
           <tr>
             <td align="left"><br />
-            	<form>
-                	<input name="searchString" type="text" />&nbsp;
-                    <input name="searchbutton" type="button" value="Search Events" />
+            	<form action="search.do" method="post">
+                	<input name="searchStr" type="text" value="${form.searchStr}" />&nbsp;
+                    <input name="action" type="submit" class="button" value="Search Events" />
                 </form>
             </td>
           </tr>
@@ -89,9 +89,9 @@ function MM_swapImage() { //v3.0
                     <td>
                     	<table width="610px" border="0" cellspacing="0" cellpadding="0">
                           <tr>
-                          	<td width="110" rowspan="4" class="home_eventheading"><input width="90" height="35" type="image" name="imageField" id="imageField" src="image.do?eventId=<%= eventsList[i].getEventId() %>" /></td>
+                          	<td width="110" rowspan="4" class="home_eventheading"><input width="100" height="70" type="image" name="imageField" id="imageField" src="image.do?eventId=<%= eventsList[i].getEventId() %>" /></td>
                             <td width="350" height="25px" class="home_eventheading"><a href="userEventRegistration.do?eventId=<%= eventsList[i].getEventId()%>"><%= eventsList[i].getTitle() %></a></td>
-                            <td width="150" class="home_eventdate"><%= f2.format(eventsList[i].getStartDate()) %>, <%= f3.format(eventsList[i].getStartDate()) %></td>
+                            <td width="150" align="left" class="home_eventdate"><%= f2.format(eventsList[i].getStartDate()) %>, <%= f3.format(eventsList[i].getStartDate()) %></td>
                           </tr>
                           <tr>                          	
                             <td class="home_eventwhen" height="18px"><%= eventsList[i].getCategory() %></td>
@@ -106,7 +106,7 @@ function MM_swapImage() { //v3.0
                             <td>&nbsp;</td>
                           </tr>
                           <tr>
-                            <td colspan="2" class="home_eventwhen" height="30px"><hr/></td>
+                            <td colspan="2" class="home_eventwhen" height="30px"><hr width="500px"/></td>
                           </tr>                
                 		</table>
             		</td>

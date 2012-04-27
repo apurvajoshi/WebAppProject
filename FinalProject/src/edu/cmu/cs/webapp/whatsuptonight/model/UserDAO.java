@@ -40,4 +40,11 @@ public class UserDAO extends GenericDAO<User> {
 		} 
 		return null;
 	}
+	
+	public User getUserByUserId(int userId) throws RollbackException {
+		User[] user = match(MatchArg.equals("userId", userId));
+		if(user.length > 0)
+			return user[0];
+		return null;
+	}
 }

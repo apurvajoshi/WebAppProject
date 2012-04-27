@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- TemplateBeginEditable name="doctitle" -->
-<title>Untitled Document</title>
+<title>WatzUpTonight</title>
 <!-- TemplateEndEditable -->
 <!-- TemplateBeginEditable name="head" -->
 <!-- TemplateEndEditable -->
@@ -80,7 +80,10 @@ $(function() {
         	<td width="72%">
         		<table width="100%" border="0" cellspacing="0" cellpadding="0">
           			<tr>
-			            <td class="discover"><br/>Edit Event<br/><br/>
+			            <td class="discover"><br/>Edit Event<br/>
+			            <span style="font-size:12px">All users registered for your event will be sent an email when you update event*</span> 
+			            <br/>
+			            <br/>
 			                1. Edit your event details!!!
 			            </td>
           			</tr>
@@ -255,7 +258,7 @@ $(function() {
 							  <tr>
 							    <td colspan="4"><table width="400" border="0" cellspacing="0" cellpadding="0">
 							      <tr>
-							        <td class="register_label">Ticket Name</td>
+							        <td class="register_label">Ticket Class</td>
 							        <td class="register_label">Quantity</td>
 							        <td class="register_label">Per Ticket Price</td>
 							      </tr>

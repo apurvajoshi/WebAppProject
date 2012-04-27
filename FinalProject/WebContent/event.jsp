@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- TemplateBeginEditable name="doctitle" -->
-<title>Untitled Document</title>
+<title>WatzUpTonight</title>
 <!-- TemplateEndEditable -->
 <!-- TemplateBeginEditable name="head" -->
 <!-- TemplateEndEditable -->
@@ -216,7 +216,7 @@ $(function() {
 							  <tr>
 							    <td colspan="4"><table width="400" border="0" cellspacing="0" cellpadding="0">
 							      <tr>
-							        <td class="register_label">Ticket Name</td>
+							        <td class="register_label">Ticket Class</td>
 							        <td class="register_label">Quantity</td>
 							        <td class="register_label">Per Ticket Price</td>
 							      </tr>

@@ -49,89 +49,88 @@ function MM_swapImage() { //v3.0
       <tr>
         <td width="14%">&nbsp;</td>
         <td width="72%"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-          
-    
- <%
-	ArrayList myTicketsList = (ArrayList)request.getAttribute("myTicketsList");
-	if (myTicketsList != null) 
-	{
-%>        
-
           <tr>
-            <td class="discover">
-<%
-
-		String msg = (String)request.getAttribute("msg");
-		if(msg != null)
-		{
-%>
-				<h3 style="color:red"><%=msg%> </h3>
-<%
-		}
-%>
-            
+            <td class="discover">           
             <br/>
-            My Tickets</td>
+            Print Tickets</td>
           </tr>
           <tr>
             <td class="discover">&nbsp;</td>
           </tr>
 
-		<tr>
-            <td class="discover">
-            <table width="600px" border="0" cellspacing="5px" cellpadding="0">
-              <tr>
-                <td width="150px" class="home_eventheading">Event Name</td>
-                <td width="200px" class="home_eventheading">Date</td>
-                <td width="120px" class="home_eventheading" align="right">Tickets Quantity</td>
-                <td width="100px" class="home_eventheading" align="right">Total Amount</td>
-              </tr>
-            </table>
+		  <tr>
+            <td class="home_eventwhen">
+            
+            
+            		<table width="500" border="1" cellspacing="0" cellpadding="0" bgcolor="#EBEBEB">
+						  <tr>
+						    <td>Event Title: XXXX</td>
+						    <td align="right">Date: xxxxxx</td>
+						  </tr>
+						  <tr>
+						    <td colspan="2"><table width="609" border="0" cellspacing="0" cellpadding="0">
+						      <tr>
+						        <td width="84">&nbsp;</td>
+						        <td width="525">&nbsp;</td>
+						      </tr>
+						      <tr>
+						        <td>Location:</td>
+						        <td>xxxxxxxxxxxxx</td>
+						      </tr>
+						      <tr>
+						        <td>City:</td>
+						        <td>xxxxxxxxxxxxxxx</td>
+						      </tr>
+						      <tr>
+						        <td>&nbsp;</td>
+						        <td>&nbsp;</td>
+						      </tr>
+						    </table></td>
+						  </tr>
+						  <tr>
+						    <td colspan="2"><table width="610" border="0" cellspacing="0" cellpadding="0">
+						      <tr>
+						        <td width="80">Name:</td>
+						        <td colspan="5">nnnnnn</td>
+						        </tr>
+						      <tr>
+						        <td>Email Id:</td>
+						        <td colspan="5">eeeeeeeeee</td>
+						        </tr>
+						      <tr>
+						        <td>Ticket Class:</td>
+						        <td width="126">ttttttt</td>
+						        <td width="93">Quantity:</td>
+						        <td width="91">qqqqqqqq</td>
+						        <td width="110" align="right">Total Amount:</td>
+						        <td width="110">rrrrrr</td>
+						      </tr>
+						      <tr>
+						        <td colspan="6">&nbsp;</td>
+						      </tr>
+						      <tr>
+						        <td colspan="6"><table width="600" border="0" cellspacing="0" cellpadding="0">
+						          <tr>
+						            <td width="266">&nbsp;</td>
+						            <td width="180">&nbsp;</td>
+						            <td width="154" align="center">hhhhhh</td>
+						          </tr>
+						        </table></td>
+						        </tr>
+						    </table></td>
+						  </tr>
+						  <tr>
+						    <td colspan="2" align="right">&nbsp;</td>
+						  </tr>
+						</table>
+            
+                     
+            
+            
+            
             </td>
           </tr>
-            <tr>
-            <td><br/>
-              <!-- table width="550px" border="0" cellspacing="2px" cellpadding="0">
-                <tr>
-                  <td-->
-                    <table width="600px" border="0" cellspacing="5px" cellpadding="0">  
-<%
-		Format f = new SimpleDateFormat("EEE, d MMM yyyy HH:mm");
-		for (int i = 0; i < myTicketsList.size(); i++) 
-		{
-			MyTickets myTicket = (MyTickets)myTicketsList.get(i);
-%>                              
-                      <tr>
-                        <td width="150px" height="25px" class="home_eventheading"><a href="printTicket.do?id=<%=myTicket.getEventId()%>">
-                        <%=myTicket.getTitle() %></a></td>
-                        <td width="200px" class="register_label"><%=f.format(myTicket.getDate())%></td>
-                        <td width="120px" class="register_label" align="right">
-                        	<%=myTicket.getTicketQty() %>
-                        </td>
-                        <td width="100px" class="register_label" align="right">
-                        	$<%=myTicket.getAmount() %>
-                        </td>
-                        </tr>
-                      <tr>
-                        <td colspan="4" class="home_eventwhen" height="30px"><hr/></td>
-                      </tr>     
- <%
-		}
- 
- %>                     
-                      
-<%
-	}
-	else
-	{
-%>                  
-     	<c:forEach var="error" items="${errors}">
-			<h4 style="color:red"> ${error} </h4>
-		</c:forEach>
-<%
-	}
-%>                 
-                                 
+                                           
                       </table>
                     </td>
                   </tr>

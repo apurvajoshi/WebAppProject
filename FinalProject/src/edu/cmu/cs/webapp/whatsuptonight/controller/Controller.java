@@ -32,6 +32,8 @@ public class Controller extends HttpServlet {
         Action.add(new ImageAction(model));
         Action.add(new ShowMyTicketsAction(model));
         Action.add(new UpdateProfileAction(model));
+        Action.add(new LogOutAction(model));
+        Action.add(new SearchAction(model));
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -87,6 +89,12 @@ public class Controller extends HttpServlet {
     	if (nextPage == null) {
     		response.sendError(HttpServletResponse.SC_NOT_FOUND,request.getServletPath());
     		return;
+    	}
+    	
+    	if (nextPage.equals("showMyTickets.do")) {
+    		RequestDispatcher d = request.getRequestDispatcher(nextPage);
+	   		d.forward(request,response);
+			return;
     	}
     	
     	if (nextPage.endsWith(".do")) {

@@ -75,7 +75,13 @@ private FormBeanFactory<PaymentForm> formBeanFactory = FormBeanFactory.getInstan
 	        
 	        // set your secret key: remember to change this to your live secret key in production
 	        // see your keys here https://manage.stripe.com/account
-	        Stripe.apiKey = "1b7vhX6Ml4yRJD5TZw719zVJcaZTfsDJ";	        
+	       
+	        /* Test key */
+	        //Stripe.apiKey = "1b7vhX6Ml4yRJD5TZw719zVJcaZTfsDJ";	        
+	        
+	        /* Live Key */
+	        Stripe.apiKey = "ZkARoB5du00PkYO80qVxUukEQlQQy0E5";
+	        
 	        
 	        Transaction.begin();
 	        Map<String, Object> chargeParams = new HashMap<String, Object>();

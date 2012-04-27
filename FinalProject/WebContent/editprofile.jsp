@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- TemplateBeginEditable name="doctitle" -->
-<title>Untitled Document</title>
+<title>WatzUpTonight</title>
 <!-- TemplateEndEditable -->
 <!-- TemplateBeginEditable name="head" -->
 <!-- TemplateEndEditable -->
@@ -103,7 +103,14 @@ function MM_swapImage() { //v3.0
 				    <td>
 				      <p>
 				      	<% 
-				      		if(hashMap.get("Business") == null) {
+				      	if(hashMap == null) {
+				      	%>
+				      	 <label>				        
+				          <input type="checkbox" name="category" value="Business" />
+				          Business</label>
+				      	<%				         	
+				      	}
+				      	else if(hashMap.get("Business") == null) {
 				      	%>
 				        <label>				        
 				          <input type="checkbox" name="category" value="Business" />
@@ -119,7 +126,14 @@ function MM_swapImage() { //v3.0
 				        %>
 				        <br />
 				        <% 
-				      		if(hashMap.get("Technology") == null) {
+				        if(hashMap == null) {
+					      	%>
+					      	 <label>				        
+					          <input type="checkbox" name="category" value="Technology" />
+					          Technology</label>
+					      	<%				         	
+					      	}
+					      	else if(hashMap.get("Technology") == null) {
 				      	%>
 				        <label>
 				          <input type="checkbox" name="category" value="Technology" />
@@ -135,7 +149,14 @@ function MM_swapImage() { //v3.0
 				        %>
 				        <br />
 				        <% 
-				      		if(hashMap.get("Art & Music") == null) {
+				        if(hashMap == null) {
+					      	%>
+					      	 <label>				        
+					          <input type="checkbox" name="category" value="Art & Music" />
+					          Art & Music</label>
+					      	<%				         	
+					      	}
+					      	else if(hashMap.get("Art & Music") == null) {
 				      	%>
 				        <label>
 				          <input type="checkbox" name="category" value="Art & Music" />
@@ -151,7 +172,14 @@ function MM_swapImage() { //v3.0
 				        %>				        
 				        <br />
 				        <% 
-				      		if(hashMap.get("Food") == null) {
+				        if(hashMap == null) {
+					      	%>
+					      	 <label>				        
+					          <input type="checkbox" name="category" value="Food" />
+					          Food</label>
+					      	<%				         	
+					      	}
+					      	else if(hashMap.get("Food") == null) {
 				      	%>
 				        <label>
 				          <input type="checkbox" name="category" value="Food" />
@@ -167,7 +195,14 @@ function MM_swapImage() { //v3.0
 				        %>		
 				        <br />
 				        <% 
-				      		if(hashMap.get("Travel") == null) {
+				        if(hashMap == null) {
+					      	%>
+					      	 <label>				        
+					          <input type="checkbox" name="category" value="Travel" />
+					          Travel</label>
+					      	<%				         	
+					      	}
+					      	else if(hashMap.get("Travel") == null) {
 				      	%>
 				        <label>
 				          <input type="checkbox" name="category" value="Travel" />
@@ -183,7 +218,14 @@ function MM_swapImage() { //v3.0
 				        %>		
 				        <br />
 				        <% 
-				      		if(hashMap.get("Sports") == null) {
+				        if(hashMap == null) {
+					      	%>
+					      	 <label>				        
+					          <input type="checkbox" name="category" value="Sports" />
+					          Sports</label>
+					      	<%				         	
+					      	}
+					      	else if(hashMap.get("Sports") == null) {
 				      	%>
 				        <label>
 				          <input type="checkbox" name="category" value="Sports" />
@@ -199,7 +241,14 @@ function MM_swapImage() { //v3.0
 				        %>		
 				        <br />
 				        <% 
-				      		if(hashMap.get("Business") == null) {
+				        if(hashMap == null) {
+					      	%>
+					      	 <label>				        
+					          <input type="checkbox" name="category" value="Entertainment" />
+					          Entertainment</label>
+					      	<%				         	
+					      	}
+					      	else if(hashMap.get("Entertainment") == null) {
 				      	%>
 				        <label>
 				          <input type="checkbox" name="category" value="Entertainment" />

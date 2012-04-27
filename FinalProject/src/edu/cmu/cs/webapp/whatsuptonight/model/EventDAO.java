@@ -41,4 +41,11 @@ public class EventDAO extends GenericDAO<Event> {
 			return events[0];
 		return null;
 	}
+
+	public Event[] getEventsOnSearch(String str) throws RollbackException {
+		Event[] events = match(MatchArg.containsIgnoreCase("title", str));
+		if(events.length > 0)
+			return events;
+		return null;
+	}
 }
