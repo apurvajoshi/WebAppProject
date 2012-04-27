@@ -2,6 +2,7 @@ package edu.cmu.cs.webapp.whatsuptonight.controller;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -71,20 +72,20 @@ public class RegisterAction extends Action {
    				
        		int userId = userDAO.insertUser(newUser);
        		
-       		ArrayList<String> userCategoryList = new ArrayList<String>();
+       		HashMap< String, Integer> hashMap = new HashMap<String, Integer>();  
        		String[] selCat = request.getParameterValues("category");
        		if (selCat != null && selCat.length != 0) {
        			for(int j=0; j<selCat.length; j++) {
        				UserCategory cat = new UserCategory();
        				cat.setUserId(userId);
        				cat.setCategoryName(selCat[j]);
-       				ucDAO.createAutoIncrement(cat);
-       				userCategoryList.add(cat.getCategoryName());
+       				ucDAO.createAutoIncrement(cat);       				
+       				hashMap.put(cat.getCategoryName(), 1);
        			}       			
        		}	
        		
        		session.setAttribute("user", newUser);
-       		session.setAttribute("userCategoryList", userCategoryList);
+       		session.setAttribute("userCategoryList", hashMap);
        			
        		return "home.do";	        
         } catch (RollbackException e) {        	

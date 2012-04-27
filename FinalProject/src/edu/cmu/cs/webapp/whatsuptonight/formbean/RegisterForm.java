@@ -30,19 +30,22 @@ public class RegisterForm extends FormBean{
 
     public List<String> getRegisterValidationErrors() {
         List<String> errors = new ArrayList<String>();
-
-        if (emailId == null || emailId.length() == 0) errors.add("Emaild Id is required");
+        
+        if (action == null) errors.add("Button is required");
+        
+        if(action.equals("Register"))
+        	if (emailId == null || emailId.length() == 0) errors.add("Emaild Id is required");
         if (password == null || password.length() == 0) errors.add("Password is required");
         if (firstName == null || firstName.length() == 0) errors.add("First Name is required");
         if (lastName == null || lastName.length() == 0) errors.add("Last Name is required");
         if (city == null || city.length() == 0) errors.add("City is required");
-        
-        if (action == null) errors.add("Button is required");
+              
 
         if (errors.size() > 0) return errors;
 
-        if (!action.equals("Register")) errors.add("Invalid button");
-        if (emailId.matches(".*[<>\"].*")) errors.add("User Name may not contain angle brackets or quotes");
+        if (!action.equals("Register") && !action.equals("Edit Profile")) errors.add("Invalid button");
+        if(action.equals("Register"))
+        	if (emailId.matches(".*[<>\"].*")) errors.add("User Name may not contain angle brackets or quotes");
         if (firstName.matches(".*[<>\"].*")) errors.add("First Name may not contain angle brackets or quotes");
         if (lastName.matches(".*[<>\"].*")) errors.add("Last Name may not contain angle brackets or quotes");
         if (city.matches(".*[<>\"].*")) errors.add("City may not contain angle brackets or quotes");

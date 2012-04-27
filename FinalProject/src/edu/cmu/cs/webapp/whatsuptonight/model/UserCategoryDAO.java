@@ -19,4 +19,14 @@ public class UserCategoryDAO extends GenericDAO<UserCategory> {
 			return uc;
 		return null;
 	}
+
+	public void deleteAllCategory(int userId) throws RollbackException {
+		UserCategory[] uc = match(MatchArg.equals("userId", userId));	
+		
+		if(uc.length > 0) {
+			for(int i=0; i<uc.length; i++) {
+				delete(uc[i].getUcId());
+			}
+		}		
+	}
 }

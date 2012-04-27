@@ -1,3 +1,6 @@
+<%@page import="edu.cmu.cs.webapp.whatsuptonight.databean.User"%>
+<%@page import="edu.cmu.cs.webapp.whatsuptonight.databean.UserCategory"%>
+<%@page import="java.util.HashMap"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -49,7 +52,11 @@ function MM_swapImage() { //v3.0
           </tr>
           <tr>
             <td align="left"><br />
-            <form method="post" action="updateprofile.do">
+            <form method="post" action="updateProfile.do">
+            <% 
+            	User user = (User)session.getAttribute("user");
+            	HashMap<String, Integer> hashMap = (HashMap<String, Integer>)session.getAttribute("userCategoryList");
+            %>
             <table width="500px" border="0" cellspacing="0" cellpadding="0">
             	  <tr>
 				    <td></td>
@@ -60,12 +67,12 @@ function MM_swapImage() { //v3.0
 				  <tr>
 				    <td width="100" class="register_label">First Name :</td>
 				    <td width="400">
-				      <input type="text" name="firstName" value="${form.firstName}" />
+				      <input type="text" name="firstName" value="<%= user.getFirstName()%>" />
 				    </td>
 				  </tr>
 				  <tr>
 				    <td class="register_label">Last Name :</td>
-				    <td><input type="text" name="lastName" value="${form.lastName}" /></td>
+				    <td><input type="text" name="lastName" value="<%= user.getLastName() %>" /></td>
 				  </tr>
 				  <tr>
 				    <td>&nbsp;</td>
@@ -73,11 +80,11 @@ function MM_swapImage() { //v3.0
 				  </tr>
 				  <tr>
 				    <td class="register_label">Email Id :</td>
-				    <td><input disabled="disabled" type="text" name="emailId" value="${form.emailId}" /></td>
+				    <td><input disabled="disabled" type="text" name="emailId" value="<%=user.getEmailId() %>" /></td>
 				  </tr>
 				  <tr>
 				    <td class="register_label">Password :</td>
-				    <td><input type="password" name="password" value="${form.password}" /></td>
+				    <td><input type="password" name="password" value="<%= user.getPassword() %>" /></td>
 				  </tr>
 				  <tr>
 				    <td>&nbsp;</td>
@@ -85,7 +92,7 @@ function MM_swapImage() { //v3.0
 				  </tr>
 				  <tr>
 				    <td class="register_label">City :</td>
-				    <td><input type="text" name="city" value="${form.city}" /></td>
+				    <td><input type="text" name="city" value="<%= user.getCity() %>" /></td>
 				  </tr>
 				  <tr>
 				    <td>&nbsp;</td>
@@ -95,33 +102,117 @@ function MM_swapImage() { //v3.0
 				    <td class="register_label">Category :</td>
 				    <td>
 				      <p>
-				        <label>
-				          <input type="checkbox" name="category" value="Business"/>
+				      	<% 
+				      		if(hashMap.get("Business") == null) {
+				      	%>
+				        <label>				        
+				          <input type="checkbox" name="category" value="Business" />
 				          Business</label>
+				        <% 
+				      		} else {
+				        %>
+				        	<label>				        
+				          <input type="checkbox" checked="checked" name="category" value="Business" />
+				          Business</label>
+				        <% 
+				      		}
+				        %>
 				        <br />
+				        <% 
+				      		if(hashMap.get("Technology") == null) {
+				      	%>
 				        <label>
 				          <input type="checkbox" name="category" value="Technology" />
 				          Technology</label>
+				        <% 
+				      		} else {
+				        %>
+				        	<label>				        
+				          <input type="checkbox" checked="checked" name="category" value="Technology" />
+				          Technology</label>
+				        <% 
+				      		}
+				        %>
 				        <br />
+				        <% 
+				      		if(hashMap.get("Art & Music") == null) {
+				      	%>
 				        <label>
 				          <input type="checkbox" name="category" value="Art & Music" />
 				          Art & Music</label>
+				        <% 
+				      		} else {
+				        %>
+				        	<label>				        
+				          <input type="checkbox" checked="checked" name="category" value="Art & Music" />
+				          Art & Music</label>
+				        <% 
+				      		}
+				        %>				        
 				        <br />
+				        <% 
+				      		if(hashMap.get("Food") == null) {
+				      	%>
 				        <label>
 				          <input type="checkbox" name="category" value="Food" />
 				          Food</label>
+				        <% 
+				      		} else {
+				        %>
+				        	<label>				        
+				          <input type="checkbox" checked="checked" name="category" value="Food" />
+				          Food</label>
+				        <% 
+				      		}
+				        %>		
 				        <br />
+				        <% 
+				      		if(hashMap.get("Travel") == null) {
+				      	%>
 				        <label>
 				          <input type="checkbox" name="category" value="Travel" />
 				          Travel</label>
+				        <% 
+				      		} else {
+				        %>
+				        	<label>				        
+				          <input type="checkbox" checked="checked" name="category" value="Travel" />
+				          Travel</label>
+				        <% 
+				      		}
+				        %>		
 				        <br />
+				        <% 
+				      		if(hashMap.get("Sports") == null) {
+				      	%>
 				        <label>
 				          <input type="checkbox" name="category" value="Sports" />
 				          Sports</label>
+				          <% 
+				      		} else {
+				        %>
+				        	<label>				        
+				          <input type="checkbox" checked="checked" name="category" value="Sports" />
+				          Sports</label>
+				        <% 
+				      		}
+				        %>		
 				        <br />
+				        <% 
+				      		if(hashMap.get("Business") == null) {
+				      	%>
 				        <label>
 				          <input type="checkbox" name="category" value="Entertainment" />
 				          Entertainment</label>
+				          <% 
+				      		} else {
+				        %>
+				        	<label>				        
+				          <input type="checkbox" checked="checked" name="category" value="Entertainment" />
+				          Entertainment</label>
+				        <% 
+				      		}
+				        %>		
 				        <br />
 				      </p>
 				    </td>
@@ -133,7 +224,7 @@ function MM_swapImage() { //v3.0
 				  <tr>
 				    <td></td>
 				    <td>
-				      <input name="action" type="submit" class="button" value="Register"/>
+				      <input name="action" type="submit" class="button" value="Edit Profile"/>
 				    </td>
 				  </tr>
 				  <tr>
