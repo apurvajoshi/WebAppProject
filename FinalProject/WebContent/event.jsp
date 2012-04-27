@@ -35,9 +35,25 @@ $(function() {
 	});
 });
 	</script>
+	<script>
+	function selectDropDownList(num1, num2, num3, num4)
+	{
+		var selObj1 = document.getElementById('startHour');
+		selObj1.selectedIndex = num1;
+			
+		var selObj2 = document.getElementById('startMins');
+		selObj2.selectedIndex = num2;
+		
+		var selObj3 = document.getElementById('endHour');
+		selObj3.selectedIndex = num3;
+		
+		var selObj4 = document.getElementById('endMins');
+		selObj4.selectedIndex = num4;
+	}	
+	</script>
 </head>
 
-<body onload="MM_preloadImages('images/event1.png','images/viewevents1.png','images/tickets1.png')">
+<body onload="MM_preloadImages('images/event1.png','images/viewevents1.png','images/tickets1.png'); selectDropDownList(${form.startHour},${form.startMins},${form.endHour},${form.endMins})">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td height="50" valign="middle" bgcolor="#3B5998"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -100,6 +116,8 @@ $(function() {
 							    <td class="register_label">&nbsp;</td>
 							    <td colspan="3">&nbsp;</td>
 							  </tr>
+							  <tr>							
+							  </tr>
 							  <tr>
 							    <td>&nbsp;</td>
 							    <td colspan="3">&nbsp;</td>
@@ -107,45 +125,71 @@ $(function() {
 							  <tr>
 							    <td class="register_label">Event Start Date :</td>
 							    <td><input type="text" name="startDate" id="startdatepicker" value="${form.startDate}" /></td>
-							    <td><span class="register_label">Event End Date :</span></td>
-							    <td><input type="text" name="startTime" value="${form.startTime}" /></td>
+							    <td><span class="register_label">Event Start Time :</span></td>
+							    <td>
+								    <select name="startHour" value="${form.startHour}">
+								    <%
+								    	for(int j=0; j<23; j++) {
+								    %>
+								      <option value="<%=j%>"><%=j %></option> 
+								    <% 
+								    	}
+								    %>  
+								    </select>
+								    &nbsp;
+								    <select name="startMins" value="${form.startMins}">
+								    <%
+								    	for(int j=0; j<60; j+=15) {
+								    %>
+								      <option value="<%=j%>"><%=j %></option> 
+								    <% 
+								    	}
+								    %>  
+								    </select>
+								    							    
+							    </td>
 							  </tr>
 							  <tr>
-							    <td class="register_label">Event Start Time :</td>
+							    <td class="register_label">Event End Date :</td>
 							    <td><input type="text" name="endDate" id="enddatepicker" value="${form.endDate}" /></td>
 							    <td><span class="register_label">Event End Time :</span></td>
-							    <td><input type="text" name="endTime" value="${form.endTime}" /></td>
+							    <td>
+							    	<select name="endHour" value="${form.endHour}">
+								    <%
+								    	for(int j=0; j<23; j++) {
+								    %>
+								      <option value="<%=j%>"><%=j %></option> 
+								    <% 
+								    	}
+								    %>  
+								    </select>
+								    &nbsp;
+								    <select name="endMins" value="${form.endMins}">
+								    <%
+								    	for(int j=0; j<60; j+=15) {
+								    %>
+								      <option value="<%=j%>"><%=j %></option> 
+								    <% 
+								    	}
+								    %>  
+								    </select>
+							    </td>
 							  </tr>
 							  <tr>
 							    <td>&nbsp;</td>
 							    <td colspan="3">&nbsp;</td>
-							  </tr>
-							  <tr>
-							    <td class="register_label">Privacy :</td>
-							    <td colspan="3">
-							      <p>
-							        <label class="register_label">
-							          <input type="radio" name="privacy" checked="checked" value="Public" />
-							          Public</label>
-							        <br />
-							        <label class="register_label">
-							          <input type="radio" name="privacy" value="Private"/>
-							          Private</label>
-							        <br />
-							        </p>
-							      </td>
-							  </tr>
+							  </tr>							  
 							  <tr>
 							    <td>&nbsp;</td>
 							    <td colspan="3">&nbsp;</td>
 							  </tr>
 							  <tr>
 							    <td class="register_label">Category :</td>
-							    <td colspan="3"><select name="select" value="${form.category}">
-							      <option value="1">Sports</option>
-							      <option value="2">Business</option>
-							      <option value="3">Entertainment</option>
-							      <option value="4">Food</option>
+							    <td colspan="3"><select name="category" value="${form.category}">
+							      <option value="Sports">Sports</option>
+							      <option value="Business">Business</option>
+							      <option value="Entertainment">Entertainment</option>
+							      <option value="Food">Food</option>
 							    </select>
 							    </td>
 							  </tr>

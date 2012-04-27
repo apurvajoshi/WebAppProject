@@ -11,11 +11,8 @@ public class Event {
 	private String description;
 	private String location;
 	private String city;
-	private Date startDate;
-	private String startTime;
-	private Date endDate;
-	private String endTime;
-	private String privacy;
+	private Date startDate;	
+	private Date endDate;		
 	private String category;
 	private String organization;
 	private Date insertTime;
@@ -34,14 +31,7 @@ public class Event {
 	}
 	public void setCity(String city) {
 		this.city = city;
-	}
-	
-	public String getStartTime() {
-		return startTime;
-	}
-	public void setStartTime(String startTime) {
-		this.startTime = startTime;
-	}
+	}	
 	
 	public Date getStartDate() {
 		return startDate;
@@ -65,19 +55,6 @@ public class Event {
 
 	public void setInsertTime(Date insertTime) {
 		this.insertTime = insertTime;
-	}
-
-	public String getEndTime() {
-		return endTime;
-	}
-	public void setEndTime(String endTime) {
-		this.endTime = endTime;
-	}
-	public String getPrivacy() {
-		return privacy;
-	}
-	public void setPrivacy(String privacy) {
-		this.privacy = privacy;
 	}
 	
 	public String getCategory() {

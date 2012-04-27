@@ -14,21 +14,60 @@ public class EventForm extends FormBean{
 	private String desc;
 	private FileProperty file = null;
 	private String location;
-	private String city;
-	private String startDate;
-	private String startTime;
-	private String endDate;
-	private String endTime;
-	private String privacy;
+	private String city;	
 	private String category;
 	private String host;
 
+	private String startDate; 
+	private String startHour;
+	private String startMins;
+	private String endDate; 
+	private String endHour;
+	private String endMins;
+		
 	private String ticketName;
 	private String ticketQty;
 	private String ticketPrice;
 
 	public FileProperty getFile()           { return file;           }
 	public void setFile(FileProperty file)  { this.file   = file;     }
+	
+	public String getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+	public String getStartHour() {
+		return startHour;
+	}
+	public void setStartHour(String startHour) {
+		this.startHour = startHour;
+	}
+	public String getStartMins() {
+		return startMins;
+	}
+	public void setStartMins(String startMins) {
+		this.startMins = startMins;
+	}
+	public String getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+	public String getEndHour() {
+		return endHour;
+	}
+	public void setEndHour(String endtHour) {
+		this.endHour = endtHour;
+	}
+	public String getEndMins() {
+		return endMins;
+	}
+	public void setEndMins(String endMins) {
+		this.endMins = endMins;
+	}
 	
 	public String getCategory() {
 		return category;
@@ -79,36 +118,7 @@ public class EventForm extends FormBean{
 	public void setCity(String city) {
 		this.city = city.trim();
 	}
-	public String getStartDate() {
-		return startDate;
-	}
-	public void setStartDate(String startDate) {
-		this.startDate = startDate.trim();
-	}
-	public String getStartTime() {
-		return startTime;
-	}
-	public void setStartTime(String startTime) {
-		this.startTime = startTime.trim();
-	}
-	public String getEndDate() {
-		return endDate;
-	}
-	public void setEndDate(String endDate) {
-		this.endDate = endDate.trim();
-	}
-	public String getEndTime() {
-		return endTime;
-	}
-	public void setEndTime(String endTime) {
-		this.endTime = endTime.trim();
-	}
-	public String getPrivacy() {
-		return privacy;
-	}
-	public void setPrivacy(String privacy) {
-		this.privacy = privacy.trim();
-	}
+	
 	
 	public String getHost() {
 		return host;
@@ -128,15 +138,39 @@ public class EventForm extends FormBean{
         if (title == null || title.length() == 0) errors.add("Title is required");
         if (desc == null || desc.length() == 0) errors.add("Desc is required");
         if (location == null || location.length() == 0) errors.add("Location is required");
-        if (city == null || city.length() == 0) errors.add("City is required");
-        if (startDate == null || startDate.length() == 0) errors.add("Start Date is required");
-        if (startTime == null || startTime.length() == 0) errors.add("Start Time is required");
-        if (endDate == null || endDate.length() == 0) errors.add("End Date is required");
-        if (endTime == null || endTime.length() == 0) errors.add("End Time is required");
+        if (city == null || city.length() == 0) errors.add("City is required");        
+        if (startDate == null || startDate.toString().length() == 0) errors.add("Start Date is required");
+        if (endDate == null || endDate.toString().length() == 0) errors.add("End Date is required");
         if (host == null || host.length() == 0) errors.add("Host is required");
         if (ticketName == null || ticketName.length() == 0) errors.add("Ticket Name is required");
         if (ticketQty == null || ticketQty.length() == 0) errors.add("Ticket Quantity is required");
         if (ticketPrice == null || ticketPrice.length() == 0) errors.add("Ticket Price is required");
+        
+        int istartHour = -1, istartMins = -1;
+        int iendHour = -1, iendMins = -1;
+        try {
+        	istartHour = Integer.parseInt(startHour);  
+        	istartMins = Integer.parseInt(startMins);
+        } catch (IllegalArgumentException e) {
+        	errors.add("Proper Start time is required.");
+        }
+        
+        try {
+        	iendHour = Integer.parseInt(endHour);  
+        	iendMins = Integer.parseInt(endMins);
+        } catch (IllegalArgumentException e) {
+        	errors.add("Proper End time is required.");
+        }
+        
+        if((istartHour < 0) && (istartHour >= 24))
+        	errors.add("Proper Start time is required.");
+        if((istartMins < 0) && (istartMins > 59))
+        	errors.add("Proper Start time is required.");
+        
+        if((iendHour < 0) && (iendHour >= 24))
+        	errors.add("Proper End time is required.");
+        if((iendMins < 0) && (iendMins > 59))
+        	errors.add("Proper End time is required.");
         
         try {
         	int qty = Integer.parseInt(ticketQty);
@@ -159,10 +193,7 @@ public class EventForm extends FormBean{
         if (desc.matches(".*[<>\"].*")) errors.add("Description may not contain angle brackets or quotes");
         if (location.matches(".*[<>\"].*")) errors.add("Location may not contain angle brackets or quotes");
         if (city.matches(".*[<>\"].*")) errors.add("City may not contain angle brackets or quotes");
-        if (startDate.matches(".*[<>\"].*")) errors.add("Start Date may not contain angle brackets or quotes");
-        if (startTime.matches(".*[<>\"].*")) errors.add("Start Time may not contain angle brackets or quotes");
-        if (endDate.matches(".*[<>\"].*")) errors.add("End Date may not contain angle brackets or quotes");
-        if (endTime.matches(".*[<>\"].*")) errors.add("End Time may not contain angle brackets or quotes");
+        
         if (host.matches(".*[<>\"].*")) errors.add("Host may not contain angle brackets or quotes");
         if (ticketName.matches(".*[<>\"].*")) errors.add("Ticket Name may not contain angle brackets or quotes");
         if (ticketQty.matches(".*[<>\"].*")) errors.add("Ticket Quantity may not contain angle brackets or quotes");
@@ -178,6 +209,17 @@ public class EventForm extends FormBean{
         } catch (IllegalArgumentException e) {
         	errors.add("Date should be in MM/DD/YYYY format.");
         }
+        
+        String[] categories = {"Sports", "Business", "Entertainment" , "Food"};
+        int flag = 0;
+        for(int x=0; x<categories.length; x++) {
+        	if(categories[x].equals(category)) {
+        		flag = 1;
+        		break;
+        	}
+        }
+        if(flag == 0)
+        	errors.add("Category is required.");
         	
         if(action.equals("Create event")) {
 	        if (file == null || file.getFileName().length() == 0) {

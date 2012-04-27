@@ -73,17 +73,18 @@ public class CreateEventAction extends Action {
        			newEvent.setDescription(form.getDesc());
        			newEvent.setLocation(form.getLocation());
        			newEvent.setCity(form.getCity());
-       			newEvent.setStartDate(new Date(form.getStartDate()));
-       			newEvent.setStartTime(form.getStartTime());
-       			newEvent.setEndDate(new Date(form.getEndDate()));
-       			newEvent.setEndTime(form.getEndTime());
-       			newEvent.setCategory(form.getCategory());
-       			newEvent.setPrivacy(form.getPrivacy());
-       			newEvent.setOrganization(form.getHost());
-       			String privacy = request.getParameter("privacy");
-       			newEvent.setPrivacy(privacy);
+       			Date temp1 = new Date(form.getStartDate());
+       			temp1.setHours(Integer.parseInt(form.getStartHour()));
+       			temp1.setMinutes(Integer.parseInt(form.getStartMins()));
+       			newEvent.setStartDate(temp1);     
+       			Date temp2 = new Date(form.getStartDate());
+       			temp2.setHours(Integer.parseInt(form.getEndHour()));
+       			temp2.setMinutes(Integer.parseInt(form.getEndMins()));
+       			newEvent.setEndDate(temp2);    			
+       			newEvent.setCategory(form.getCategory());       			
+       			newEvent.setOrganization(form.getHost());      			
        			newEvent.setInsertTime(new Date());
-       			       			       		
+       			
 	       		int eventId = -1;
 				try {
 					eventId = eventDAO.insertEventinDB(newEvent);

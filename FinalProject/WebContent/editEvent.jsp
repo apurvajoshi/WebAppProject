@@ -103,13 +103,56 @@ $(function() {
 							    <td class="register_label">Event Start Date :</td>
 							    <td><input type="text" name="startDate" id="startdatepicker" value="${event.startDate}" /></td>
 							    <td><span class="register_label">Event End Date :</span></td>
-							    <td><input type="text" name="startTime" value="${event.startTime}" /></td>
+							    <td>
+							    	 <td>
+								    <select name="startHour" value="${form.startHour}">
+								    <%
+								    	for(int j=0; j<23; j++) {
+								    %>
+								      <option value="<%=j%>"><%=j %></option> 
+								    <% 
+								    	}
+								    %>  
+								    </select>
+								    &nbsp;
+								    <select name="startMins" value="${form.startMins}">
+								    <%
+								    	for(int j=0; j<60; j+=15) {
+								    %>
+								      <option value="<%=j%>"><%=j %></option> 
+								    <% 
+								    	}
+								    %>  
+								    </select>
+								    							    
+							    </td>
+							    </td>
 							  </tr>
 							  <tr>
 							    <td class="register_label">Event Start Time :</td>
 							    <td><input type="text" name="endDate" id="enddatepicker" value="${event.endDate}" /></td>
 							    <td><span class="register_label">Event End Time :</span></td>
-							    <td><input type="text" name="endTime" value="${event.endTime}" /></td>
+							    <td>
+							    	<select name="endHour" value="${form.endHour}">
+								    <%
+								    	for(int j=0; j<23; j++) {
+								    %>
+								      <option value="<%=j%>"><%=j %></option> 
+								    <% 
+								    	}
+								    %>  
+								    </select>
+								    &nbsp;
+								    <select name="endMins" value="${form.endMins}">
+								    <%
+								    	for(int j=0; j<60; j+=15) {
+								    %>
+								      <option value="<%=j%>"><%=j %></option> 
+								    <% 
+								    	}
+								    %>  
+								    </select>
+							    </td>
 							  </tr>
 							  <tr>
 							    <td>&nbsp;</td>

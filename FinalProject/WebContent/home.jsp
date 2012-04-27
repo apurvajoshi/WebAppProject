@@ -91,12 +91,16 @@ function MM_swapImage() { //v3.0
             	            	
             	<% 
             		Event[] eventsList = (Event[])request.getAttribute("eventsList");
-            		for(int i=0; i<eventsList.length; i++) 
+            		if(eventsList != null) 
             		{
-                  		Date stDate = new Date(eventsList[i].getStartDate().toString()); 
-                  		GregorianCalendar stCal = new GregorianCalendar(stDate.getYear(), stDate.getMonth(), stDate.getDay());
-                  		String[] shortMonths = new DateFormatSymbols().getShortMonths();
-                  		String[] shortWeekdays = new DateFormatSymbols().getShortWeekdays();                  	
+            			if(eventsList.length > 0)
+            			{
+		            		for(int i=0; i<eventsList.length; i++) 
+		            		{
+		                  		Date stDate = new Date(eventsList[i].getStartDate().toString()); 
+		                  		GregorianCalendar stCal = new GregorianCalendar(stDate.getYear(), stDate.getMonth(), stDate.getDay());
+		                  		String[] shortMonths = new DateFormatSymbols().getShortMonths();
+		                  		String[] shortWeekdays = new DateFormatSymbols().getShortWeekdays();                  	
             	%>
                   <tr>
                     <td>
@@ -106,6 +110,10 @@ function MM_swapImage() { //v3.0
                             <td width="350" height="25px" class="home_eventheading"><a href="userEventRegistration.do?eventId=<%= eventsList[i].getEventId()%>"><%= eventsList[i].getTitle() %></a></td>
                             <td width="100" class="home_eventdate"><%= shortWeekdays[stCal.get(Calendar.DAY_OF_WEEK)] %>, <%= shortMonths[stCal.get(Calendar.MONTH)]%> <%= stCal.get(Calendar.DAY_OF_MONTH) %></td>
                           </tr>
+                          <tr>                          	
+                            <td class="home_eventwhen" height="18px"><%= eventsList[i].getCategory() %></td>
+                            <td></td>
+                          </tr> 
                           <tr>                          	
                             <td class="home_eventwhen" height="18px"><b>When:</b><%= shortMonths[stCal.get(Calendar.MONTH)]%> <%= stCal.get(Calendar.DAY_OF_MONTH) %>, <%= shortWeekdays[stCal.get(Calendar.DAY_OF_WEEK)] %>, <%= eventsList[i].getStartTime() %> </td>
                             <td></td>
@@ -121,6 +129,8 @@ function MM_swapImage() { //v3.0
             		</td>
            		</tr>
            		<%
+		            		}
+	            		}
             		}
            		%>
                 
