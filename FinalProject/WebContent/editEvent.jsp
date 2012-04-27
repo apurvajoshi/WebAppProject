@@ -138,7 +138,7 @@ $(function() {
 								    <select name="startHour">
 								    <%						
 								    	int stHr = event.getStartDate().getHours();
-								    	for(int j=0; j<23; j++) {
+								    	for(int j=0; j<24; j++) {
 								    		if(stHr == j) {
 								    %>
 								      			<option selected="selected" value="<%=j%>"><%=j %></option> 
@@ -182,7 +182,7 @@ $(function() {
 							    	<select name="endHour" value="${form.endHour}">
 								    <%
 								    	int edHr = event.getEndDate().getHours();
-								    	for(int j=0; j<23; j++) {
+								    	for(int j=0; j<24; j++) {
 								    		if(edHr == j) {
 								    %>
 								      		<option selected="selected" value="<%=j%>"><%=j %></option> 

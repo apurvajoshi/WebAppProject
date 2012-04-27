@@ -124,7 +124,7 @@ $(function() {
 							    <td>
 								    <select name="startHour" value="${form.startHour}">
 								    <%
-								    	for(int j=0; j<23; j++) {
+								    	for(int j=0; j<24; j++) {
 								    %>
 								      <option value="<%=j%>"><%=j %></option> 
 								    <% 
@@ -151,7 +151,7 @@ $(function() {
 							    <td>
 							    	<select name="endHour" value="${form.endHour}">
 								    <%
-								    	for(int j=0; j<23; j++) {
+								    	for(int j=0; j<24; j++) {
 								    %>
 								      <option value="<%=j%>"><%=j %></option> 
 								    <% 

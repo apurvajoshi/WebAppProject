@@ -172,6 +172,7 @@ public class EventForm extends FormBean{
         if((iendMins < 0) && (iendMins > 59))
         	errors.add("Proper End time is required.");
         
+            
         try {
         	int qty = Integer.parseInt(ticketQty);
         } catch(NumberFormatException e) {
